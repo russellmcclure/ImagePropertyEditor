@@ -22,17 +22,25 @@ namespace ImagePropertyEditor
         {
             this.fileInfo = fileInfo;
 
-            this.exifImageFile = ExifLibrary.ImageFile.FromFile(this.fileInfo.FullName);
-            var dateTaken = exifImageFile.Properties.Get(ExifLibrary.ExifTag.DateTimeOriginal);
-            this.dateTaken = dateTaken == null ? null : (DateTime?)dateTaken.Value;
+            try
+            {
+                this.exifImageFile = ExifLibrary.ImageFile.FromFile(this.fileInfo.FullName);
+                var dateTaken = exifImageFile.Properties.Get(ExifLibrary.ExifTag.DateTimeOriginal);
+                this.dateTaken = dateTaken == null ? null : (DateTime?)dateTaken.Value;
+            }
+            catch (Exception ex)
+            {
+                // this path will be most likely due to a image file or movie type where the ExifLibrary doesn't support the editing of Exif data.
+                this.dateTaken = null;
+            }
         } 
 
         public string FullName {  get {  return fileInfo.FullName; } }
 
+        public bool CanSetDateTaken { get { return this.exifImageFile != null; } }
+
         public void SetDateTaken(DateTime dateTaken)
         {
-            this.HasBeenUpdated = true;
-
             this.dateTaken = dateTaken;
         }
 
@@ -45,25 +53,31 @@ namespace ImagePropertyEditor
             }
         }
 
-        public bool HasBeenUpdated { get; private set; }
+        public bool HasBeenUpdated
+        {
+            get
+            {
+                return NewLastModifiedTime.HasValue || NewDateTaken.HasValue;
+            }
+        }
+
+        public bool HasExif
+        {
+            get
+            {
+                return this.exifImageFile != null;
+            }
+        }
 
         public DateTime CreationTime
         {
             get
             {
-                return fileInfo.CreationTime;
+                return this.fileInfo.CreationTime;
             }
         }
 
-        public DateTime LastAccessTime
-        {
-            get
-            {
-                return fileInfo.LastAccessTime;
-            }
-        }
-
-        public DateTime LastWriteTime
+        public DateTime LastModifiedTime
         {
             get
             {
@@ -71,20 +85,16 @@ namespace ImagePropertyEditor
             }
         }
 
-        public DateTime? DateTakenCurrent
+        public DateTime? NewLastModifiedTime { get; set; }
+
+        public DateTime? DateTaken
         {
             get
             {
-                return fileInfo.LastWriteTime;
+                return HasExif ? this.dateTaken : (DateTime?)null;
             }
         }
 
-        public DateTime? DateTakenNew
-        {
-            get
-            {
-                return fileInfo.CreationTime;
-            }
-        }
+        public DateTime? NewDateTaken { get; set; }
     }
 }

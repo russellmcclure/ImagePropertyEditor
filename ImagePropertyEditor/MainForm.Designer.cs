@@ -37,9 +37,15 @@
             this.pictureViewTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.imageViewControlPanel = new System.Windows.Forms.Panel();
+            this.nextButton = new System.Windows.Forms.Button();
+            this.prevButton = new System.Windows.Forms.Button();
+            this.currentFileNameLabel = new System.Windows.Forms.Label();
+            this.dateEditor2 = new ImagePropertyEditor.DateEditor();
+            this.button2 = new System.Windows.Forms.Button();
             this.gridViewTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dateEditor1 = new ImagePropertyEditor.DateEditor();
             this.rootTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainControlsPanel = new System.Windows.Forms.Panel();
             this.fileNameFilterTextBox = new System.Windows.Forms.TextBox();
@@ -49,10 +55,12 @@
             this.selectedDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dateEditor2 = new ImagePropertyEditor.DateEditor();
-            this.dateEditor1 = new ImagePropertyEditor.DateEditor();
+            this.FileColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateTakenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewDateTakenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HasBeenUpdatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.LastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewLastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -149,6 +157,9 @@
             // 
             // imageViewControlPanel
             // 
+            this.imageViewControlPanel.Controls.Add(this.nextButton);
+            this.imageViewControlPanel.Controls.Add(this.prevButton);
+            this.imageViewControlPanel.Controls.Add(this.currentFileNameLabel);
             this.imageViewControlPanel.Controls.Add(this.dateEditor2);
             this.imageViewControlPanel.Controls.Add(this.button2);
             this.imageViewControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -156,6 +167,54 @@
             this.imageViewControlPanel.Name = "imageViewControlPanel";
             this.imageViewControlPanel.Size = new System.Drawing.Size(1642, 69);
             this.imageViewControlPanel.TabIndex = 3;
+            // 
+            // nextButton
+            // 
+            this.nextButton.Location = new System.Drawing.Point(57, 16);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(38, 38);
+            this.nextButton.TabIndex = 4;
+            this.nextButton.Text = "&>";
+            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
+            // 
+            // prevButton
+            // 
+            this.prevButton.Location = new System.Drawing.Point(12, 16);
+            this.prevButton.Name = "prevButton";
+            this.prevButton.Size = new System.Drawing.Size(38, 38);
+            this.prevButton.TabIndex = 3;
+            this.prevButton.Text = "&<";
+            this.prevButton.UseVisualStyleBackColor = true;
+            this.prevButton.Click += new System.EventHandler(this.prevButton_Click);
+            // 
+            // currentFileNameLabel
+            // 
+            this.currentFileNameLabel.AutoSize = true;
+            this.currentFileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentFileNameLabel.Location = new System.Drawing.Point(151, 21);
+            this.currentFileNameLabel.Name = "currentFileNameLabel";
+            this.currentFileNameLabel.Size = new System.Drawing.Size(60, 24);
+            this.currentFileNameLabel.TabIndex = 2;
+            this.currentFileNameLabel.Text = "label3";
+            // 
+            // dateEditor2
+            // 
+            this.dateEditor2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEditor2.Location = new System.Drawing.Point(773, 21);
+            this.dateEditor2.Name = "dateEditor2";
+            this.dateEditor2.Size = new System.Drawing.Size(539, 38);
+            this.dateEditor2.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1455, 36);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // gridViewTabPage
             // 
@@ -172,7 +231,15 @@
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FileColumn,
+            this.DateTakenColumn,
+            this.NewDateTakenColumn,
+            this.HasBeenUpdatedColumn,
+            this.LastModifiedColumn,
+            this.NewLastModifiedColumn});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(3, 3);
             this.dataGridView.Name = "dataGridView";
@@ -189,6 +256,14 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dateEditor1
+            // 
+            this.dateEditor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEditor1.Location = new System.Drawing.Point(373, 57);
+            this.dateEditor1.Name = "dateEditor1";
+            this.dateEditor1.Size = new System.Drawing.Size(226, 38);
+            this.dateEditor1.TabIndex = 0;
             // 
             // rootTableLayoutPanel
             // 
@@ -262,6 +337,7 @@
             this.selectedDirectoryTextBox.Name = "selectedDirectoryTextBox";
             this.selectedDirectoryTextBox.Size = new System.Drawing.Size(454, 20);
             this.selectedDirectoryTextBox.TabIndex = 1;
+            this.selectedDirectoryTextBox.Text = "C:\\temp\\NewPicsTest";
             // 
             // label1
             // 
@@ -276,40 +352,53 @@
             // 
             this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
             // 
-            // button1
+            // FileColumn
             // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.FileColumn.DataPropertyName = "FullName";
+            this.FileColumn.HeaderText = "File";
+            this.FileColumn.Name = "FileColumn";
+            this.FileColumn.ReadOnly = true;
+            this.FileColumn.Width = 48;
             // 
-            // button2
+            // DateTakenColumn
             // 
-            this.button2.Location = new System.Drawing.Point(462, 21);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.DateTakenColumn.DataPropertyName = "DateTaken";
+            this.DateTakenColumn.HeaderText = "Date Taken";
+            this.DateTakenColumn.Name = "DateTakenColumn";
+            this.DateTakenColumn.ReadOnly = true;
+            this.DateTakenColumn.Width = 89;
             // 
-            // dateEditor2
+            // NewDateTakenColumn
             // 
-            this.dateEditor2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEditor2.Location = new System.Drawing.Point(164, 21);
-            this.dateEditor2.Name = "dateEditor2";
-            this.dateEditor2.Size = new System.Drawing.Size(226, 38);
-            this.dateEditor2.TabIndex = 1;
+            this.NewDateTakenColumn.DataPropertyName = "NewDateTaken";
+            this.NewDateTakenColumn.HeaderText = "New Date Taken";
+            this.NewDateTakenColumn.Name = "NewDateTakenColumn";
+            this.NewDateTakenColumn.ReadOnly = true;
+            this.NewDateTakenColumn.Width = 105;
             // 
-            // dateEditor1
+            // HasBeenUpdatedColumn
             // 
-            this.dateEditor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEditor1.Location = new System.Drawing.Point(373, 57);
-            this.dateEditor1.Name = "dateEditor1";
-            this.dateEditor1.Size = new System.Drawing.Size(226, 38);
-            this.dateEditor1.TabIndex = 0;
+            this.HasBeenUpdatedColumn.DataPropertyName = "HasBeenUpdated";
+            this.HasBeenUpdatedColumn.HeaderText = "Updated";
+            this.HasBeenUpdatedColumn.Name = "HasBeenUpdatedColumn";
+            this.HasBeenUpdatedColumn.ReadOnly = true;
+            this.HasBeenUpdatedColumn.Width = 54;
+            // 
+            // LastModifiedColumn
+            // 
+            this.LastModifiedColumn.DataPropertyName = "LastModifiedTime";
+            this.LastModifiedColumn.HeaderText = "Last Modified";
+            this.LastModifiedColumn.Name = "LastModifiedColumn";
+            this.LastModifiedColumn.ReadOnly = true;
+            this.LastModifiedColumn.Width = 88;
+            // 
+            // NewLastModifiedColumn
+            // 
+            this.NewLastModifiedColumn.DataPropertyName = "NewLastModifiedTime";
+            this.NewLastModifiedColumn.HeaderText = "New Last Modified";
+            this.NewLastModifiedColumn.Name = "NewLastModifiedColumn";
+            this.NewLastModifiedColumn.ReadOnly = true;
+            this.NewLastModifiedColumn.Width = 110;
             // 
             // MainForm
             // 
@@ -317,7 +406,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1668, 948);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.rootTableLayoutPanel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -328,6 +416,7 @@
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -335,6 +424,7 @@
             this.pictureViewTabPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.imageViewControlPanel.ResumeLayout(false);
+            this.imageViewControlPanel.PerformLayout();
             this.gridViewTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.tabPage1.ResumeLayout(false);
@@ -371,8 +461,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button loadImagesButton;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private DateEditor dateEditor2;
+        private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button prevButton;
+        private System.Windows.Forms.Label currentFileNameLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateTakenColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NewDateTakenColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn HasBeenUpdatedColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastModifiedColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NewLastModifiedColumn;
     }
 }
 

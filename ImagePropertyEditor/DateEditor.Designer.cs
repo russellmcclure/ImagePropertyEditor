@@ -44,6 +44,13 @@ namespace ImagePropertyEditor
             this.label2 = new System.Windows.Forms.Label();
             this.dayTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.hourTextBox = new System.Windows.Forms.TextBox();
+            this.minuteTextBox = new System.Windows.Forms.TextBox();
+            this.secondTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pmCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // yearTextBox
@@ -92,6 +99,7 @@ namespace ImagePropertyEditor
             this.dayTextBox.Name = "dayTextBox";
             this.dayTextBox.Size = new System.Drawing.Size(30, 30);
             this.dayTextBox.TabIndex = 5;
+            this.dayTextBox.TextChanged += new System.EventHandler(this.dayTextBox_TextChanged);
             this.dayTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label3
@@ -103,9 +111,80 @@ namespace ImagePropertyEditor
             this.label3.TabIndex = 6;
             this.label3.Text = "D:";
             // 
+            // hourTextBox
+            // 
+            this.hourTextBox.Location = new System.Drawing.Point(277, 4);
+            this.hourTextBox.MaxLength = 2;
+            this.hourTextBox.Name = "hourTextBox";
+            this.hourTextBox.Size = new System.Drawing.Size(30, 30);
+            this.hourTextBox.TabIndex = 7;
+            this.hourTextBox.TextChanged += new System.EventHandler(this.hourTextBox_TextChanged);
+            // 
+            // minuteTextBox
+            // 
+            this.minuteTextBox.Location = new System.Drawing.Point(349, 4);
+            this.minuteTextBox.MaxLength = 2;
+            this.minuteTextBox.Name = "minuteTextBox";
+            this.minuteTextBox.Size = new System.Drawing.Size(30, 30);
+            this.minuteTextBox.TabIndex = 8;
+            this.minuteTextBox.TextChanged += new System.EventHandler(this.minuteTextBox_TextChanged);
+            // 
+            // secondTextBox
+            // 
+            this.secondTextBox.Location = new System.Drawing.Point(422, 4);
+            this.secondTextBox.MaxLength = 2;
+            this.secondTextBox.Name = "secondTextBox";
+            this.secondTextBox.Size = new System.Drawing.Size(30, 30);
+            this.secondTextBox.TabIndex = 9;
+            this.secondTextBox.TextChanged += new System.EventHandler(this.secondTextBox_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(245, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 25);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "H:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(313, 5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 25);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "M:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(390, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 25);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "S:";
+            // 
+            // pmCheckBox
+            // 
+            this.pmCheckBox.AutoSize = true;
+            this.pmCheckBox.Location = new System.Drawing.Point(471, 5);
+            this.pmCheckBox.Name = "pmCheckBox";
+            this.pmCheckBox.Size = new System.Drawing.Size(61, 29);
+            this.pmCheckBox.TabIndex = 13;
+            this.pmCheckBox.Text = "PM";
+            this.pmCheckBox.UseVisualStyleBackColor = true;
+            // 
             // DateEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.pmCheckBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.secondTextBox);
+            this.Controls.Add(this.minuteTextBox);
+            this.Controls.Add(this.hourTextBox);
             this.Controls.Add(this.dayTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.monthTextBox);
@@ -114,7 +193,8 @@ namespace ImagePropertyEditor
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "DateEditor";
-            this.Size = new System.Drawing.Size(226, 38);
+            this.Size = new System.Drawing.Size(538, 38);
+            this.Load += new System.EventHandler(this.DateEditor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +208,12 @@ namespace ImagePropertyEditor
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox dayTextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox hourTextBox;
+        private System.Windows.Forms.TextBox minuteTextBox;
+        private System.Windows.Forms.TextBox secondTextBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox pmCheckBox;
     }
 }

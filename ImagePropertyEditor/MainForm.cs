@@ -14,17 +14,22 @@ namespace ImagePropertyEditor
     public partial class MainForm : Form
     {
         private EditorControls editorControls;
-        private List<ImageFileInfo> imageFiles;
+        private BindingList<ImageFileInfo> imageFiles;
         private int currentImageFileIndex;
 
         public event EventHandler ImageFilesLoaded;
 
+        private bool imagesLoaded = false;
 
         public MainForm()
         {
             InitializeComponent();
 
+            this.KeyPreview = true;
+
             this.editorControls = new EditorControls();
+
+            this.dataGridView.AutoGenerateColumns = false;
         }
 
         private void MainForm_DragEnter(object sender, DragEventArgs e)
@@ -125,7 +130,7 @@ namespace ImagePropertyEditor
                 }
 
                 // now load up the meta data for each of the image files we've found
-                this.imageFiles = imageFileNames.Select(f => new ImageFileInfo(f)).ToList();
+                this.imageFiles = new BindingList<ImageFileInfo>(imageFileNames.Select(f => new ImageFileInfo(f)).ToList());
 
                 this.OnImageFilesLoaded(EventArgs.Empty);
 
@@ -140,13 +145,46 @@ namespace ImagePropertyEditor
         {
             this.mainPictureBox.Image = null;
             this.dataGridView.Rows.Clear();
+            this.dataGridView.DataSource = this.imageFiles;
 
             if (this.imageFiles.Count > 0)
             {
-               this.currentImageFileIndex = 0;
+                this.prevButton.Enabled = true;
+                this.nextButton.Enabled = true;
+
+                this.imagesLoaded = true;
+
+                this.currentImageFileIndex = 0;
+
+                ShowNewlySelectedImage();
+            }
+            else
+            {
+                // there are no images so let's handle that
+                this.prevButton.Enabled = false;
+                this.nextButton.Enabled = false;
+
+                this.imagesLoaded = false;
+
+                ClearImageSelection();
             }
 
-            this.mainPictureBox.ImageLocation = this.imageFiles[this.currentImageFileIndex].FullName;
+        }
+
+        private void ClearImageSelection()
+        {
+            this.mainPictureBox.ImageLocation = null;
+            this.currentFileNameLabel.Text = string.Empty;
+        }
+
+        private void ShowNewlySelectedImage()
+        {
+            var newImageFileInfo = this.imageFiles[this.currentImageFileIndex];
+            this.mainPictureBox.ImageLocation = newImageFileInfo.FullName;
+            this.currentFileNameLabel.Text = Path.GetFileName(newImageFileInfo.FullName);
+
+            this.dataGridView.ClearSelection();
+            this.dataGridView.Rows[this.currentImageFileIndex].Selected = true;
         }
 
         protected virtual void OnImageFilesLoaded(EventArgs e)
@@ -158,11 +196,48 @@ namespace ImagePropertyEditor
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.imageFiles.ForEach(imageFile => imageFile.SetDateTaken(DateTime.Now));
+            //this.imageFiles.ForEach(imageFile => imageFile.SetDateTaken(DateTime.Now));
 
-            this.imageFiles.ForEach(imageFile => imageFile.CommitChange());
+            //this.imageFiles.ForEach(imageFile => imageFile.CommitChange());
         }
 
-        //private void 
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentImageFileIndex < (this.imageFiles.Count - 1))
+            {
+                this.currentImageFileIndex++;
+                ShowNewlySelectedImage();
+            }
+        }
+
+        private void prevButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentImageFileIndex > 0)
+            {
+                this.currentImageFileIndex--;
+                ShowNewlySelectedImage();
+            }
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.imagesLoaded)
+            {
+                if (e.KeyCode == Keys.OemPeriod)
+                {
+                    if (this.nextButton.Enabled)
+                    { 
+                        this.nextButton.PerformClick();
+                    }
+                }
+                else if (e.KeyCode == Keys.Oemcomma)
+                {
+                    if (this.prevButton.Enabled)
+                    {
+                        this.prevButton.PerformClick();
+                    }
+                }
+            }
+        }
     }
 }
