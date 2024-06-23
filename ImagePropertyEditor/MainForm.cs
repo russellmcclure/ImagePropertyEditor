@@ -30,6 +30,29 @@ namespace ImagePropertyEditor
             this.editorControls = new EditorControls();
 
             this.dataGridView.AutoGenerateColumns = false;
+
+            this.pictureViewDateEditor.DateEntered += PictureViewDateEditor_DateEntered;
+        }
+
+        private void PictureViewDateEditor_DateEntered(object sender, DateEnteredEventArgs e)
+        {
+            // this fires when the user has pressed enter in the DateEditor
+            if (this.imagesLoaded)
+            {
+                ImageFileInfo currentImageFileInfo = this.GetCurrentImageFileInfo();
+                
+                if (currentImageFileInfo.HasExif)
+                {
+                    currentImageFileInfo.NewDateTaken = e.DateEntered;
+                }
+                else
+                {
+                    currentImageFileInfo.NewLastModifiedTime = e.DateEntered;
+                }
+
+                // now advance to the next image in the list
+                this.nextButton_Click(null, EventArgs.Empty);
+            }
         }
 
         private void MainForm_DragEnter(object sender, DragEventArgs e)
@@ -177,14 +200,21 @@ namespace ImagePropertyEditor
             this.currentFileNameLabel.Text = string.Empty;
         }
 
+        private ImageFileInfo GetCurrentImageFileInfo()
+        {
+            return this.imageFiles[this.currentImageFileIndex];
+        }
+
         private void ShowNewlySelectedImage()
         {
-            var newImageFileInfo = this.imageFiles[this.currentImageFileIndex];
+            var newImageFileInfo = this.GetCurrentImageFileInfo();
             this.mainPictureBox.ImageLocation = newImageFileInfo.FullName;
             this.currentFileNameLabel.Text = Path.GetFileName(newImageFileInfo.FullName);
 
             this.dataGridView.ClearSelection();
             this.dataGridView.Rows[this.currentImageFileIndex].Selected = true;
+
+            this.pictureViewDateEditor.SetDate(newImageFileInfo.DateTaken);
         }
 
         protected virtual void OnImageFilesLoaded(EventArgs e)

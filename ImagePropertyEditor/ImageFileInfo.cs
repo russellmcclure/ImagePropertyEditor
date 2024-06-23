@@ -48,8 +48,16 @@ namespace ImagePropertyEditor
         {
             if (this.HasBeenUpdated)
             {
-                this.exifImageFile.Properties.Set(ExifLibrary.ExifTag.DateTimeOriginal, this.dateTaken.Value);
-                this.exifImageFile.Save(this.fileInfo.FullName);
+                if (CanSetDateTaken && NewDateTaken.HasValue)
+                {
+                    this.exifImageFile.Properties.Set(ExifLibrary.ExifTag.DateTimeOriginal, this.dateTaken.Value);
+                    this.exifImageFile.Save(this.fileInfo.FullName);
+                }
+
+                if (this.NewLastModifiedTime.HasValue)
+                {
+                    this.fileInfo.LastWriteTime = this.NewLastModifiedTime.Value;
+                }
             }
         }
 

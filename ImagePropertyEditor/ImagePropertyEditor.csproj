@@ -185,6 +185,7 @@
     <Compile Include="DateEditor.Designer.cs">
       <DependentUpon>DateEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="DateEnteredEventArgs.cs" />
     <Compile Include="EditorControls.cs">
       <SubType>Form</SubType>
     </Compile>

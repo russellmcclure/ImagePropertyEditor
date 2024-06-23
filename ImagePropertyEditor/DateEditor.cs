@@ -12,6 +12,8 @@ namespace ImagePropertyEditor
 {
     public partial class DateEditor : UserControl
     {
+        public event EventHandler<DateEnteredEventArgs> DateEntered;
+
         public DateEditor()
         {
             InitializeComponent();
@@ -36,6 +38,11 @@ namespace ImagePropertyEditor
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                this.OnDateEntered();
+            }
+
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
@@ -90,6 +97,25 @@ namespace ImagePropertyEditor
             }
         }
 
+        private DateTime? ParseEnteredDateTime()
+        {
+            DateTime? enteredDateTime = null;
+            try
+            {
+                int year = int.Parse(yearTextBox.Text);
+                int month = int.Parse(monthTextBox.Text);
+                int day = int.Parse(dayTextBox.Text);
+                int hour = int.Parse(hourTextBox.Text);
+                int minute = int.Parse(minuteTextBox.Text);
+                int second = int.Parse(secondTextBox.Text);
+                
+                enteredDateTime = new DateTime(year, month, day, hour, minute, second);
+            }
+            catch { }
+
+            return enteredDateTime;
+        }
+
         private void DateEditor_Load(object sender, EventArgs e)
         {
             int n = 44;
@@ -106,6 +132,49 @@ namespace ImagePropertyEditor
             this.hourTextBox.Click += textBox_GotFocus;
             this.minuteTextBox.Click += textBox_GotFocus;
             this.secondTextBox.Click += textBox_GotFocus;
+
+            this.yearTextBox.Focus();
+        }
+
+        protected virtual void OnDateEntered()
+        {
+            DateTime? entered = this.ParseEnteredDateTime();
+
+            if (entered != null && entered.HasValue)
+            {
+                DateEntered?.Invoke(this, new DateEnteredEventArgs(entered.Value));
+            }
+        }
+
+        private void Clear()
+        {
+            this.yearTextBox.Text = "2012";
+            this.monthTextBox.Text = "12";
+            this.dayTextBox.Text = "12";
+            this.hourTextBox.Text = "12";
+            this.minuteTextBox.Text = "12";
+            this.secondTextBox.Text = "12";
+            this.pmCheckBox.Checked = true;
+        }
+
+        public void SetDate(DateTime? date)
+        {
+            if (date.HasValue)
+            {
+                this.yearTextBox.Text = date.Value.Year.ToString();
+                this.monthTextBox.Text = date.Value.Month.ToString();
+                this.dayTextBox.Text = date.Value.Day.ToString();
+                this.hourTextBox.Text = date.Value.Hour.ToString();
+                this.minuteTextBox.Text = date.Value.Minute.ToString();
+                this.secondTextBox.Text = date.Value.Second.ToString();
+                this.pmCheckBox.Checked = date.Value.Hour >= 12;
+            }
+            else
+            {
+                this.Clear();
+            }
+
+            this.yearTextBox.Focus();
         }
     }
 }

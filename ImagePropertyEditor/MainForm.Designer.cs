@@ -40,8 +40,8 @@
             this.nextButton = new System.Windows.Forms.Button();
             this.prevButton = new System.Windows.Forms.Button();
             this.currentFileNameLabel = new System.Windows.Forms.Label();
-            this.dateEditor2 = new ImagePropertyEditor.DateEditor();
-            this.button2 = new System.Windows.Forms.Button();
+            this.pictureViewDateEditor = new ImagePropertyEditor.DateEditor();
+            this.commitChangesButton = new System.Windows.Forms.Button();
             this.gridViewTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -160,8 +160,8 @@
             this.imageViewControlPanel.Controls.Add(this.nextButton);
             this.imageViewControlPanel.Controls.Add(this.prevButton);
             this.imageViewControlPanel.Controls.Add(this.currentFileNameLabel);
-            this.imageViewControlPanel.Controls.Add(this.dateEditor2);
-            this.imageViewControlPanel.Controls.Add(this.button2);
+            this.imageViewControlPanel.Controls.Add(this.pictureViewDateEditor);
+            this.imageViewControlPanel.Controls.Add(this.commitChangesButton);
             this.imageViewControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageViewControlPanel.Location = new System.Drawing.Point(3, 3);
             this.imageViewControlPanel.Name = "imageViewControlPanel";
@@ -198,23 +198,23 @@
             this.currentFileNameLabel.TabIndex = 2;
             this.currentFileNameLabel.Text = "label3";
             // 
-            // dateEditor2
+            // pictureViewDateEditor
             // 
-            this.dateEditor2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEditor2.Location = new System.Drawing.Point(773, 21);
-            this.dateEditor2.Name = "dateEditor2";
-            this.dateEditor2.Size = new System.Drawing.Size(539, 38);
-            this.dateEditor2.TabIndex = 1;
+            this.pictureViewDateEditor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pictureViewDateEditor.Location = new System.Drawing.Point(773, 21);
+            this.pictureViewDateEditor.Name = "pictureViewDateEditor";
+            this.pictureViewDateEditor.Size = new System.Drawing.Size(539, 38);
+            this.pictureViewDateEditor.TabIndex = 1;
             // 
-            // button2
+            // commitChangesButton
             // 
-            this.button2.Location = new System.Drawing.Point(1455, 36);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.commitChangesButton.Location = new System.Drawing.Point(1480, 16);
+            this.commitChangesButton.Name = "commitChangesButton";
+            this.commitChangesButton.Size = new System.Drawing.Size(138, 43);
+            this.commitChangesButton.TabIndex = 0;
+            this.commitChangesButton.Text = "Commit All Changes";
+            this.commitChangesButton.UseVisualStyleBackColor = true;
+            this.commitChangesButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // gridViewTabPage
             // 
@@ -460,8 +460,8 @@
         private System.Windows.Forms.TextBox fileNameFilterTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button loadImagesButton;
-        private System.Windows.Forms.Button button2;
-        private DateEditor dateEditor2;
+        private System.Windows.Forms.Button commitChangesButton;
+        private DateEditor pictureViewDateEditor;
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Button prevButton;
         private System.Windows.Forms.Label currentFileNameLabel;
