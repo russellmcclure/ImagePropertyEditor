@@ -26,6 +26,12 @@ namespace ImagePropertyEditor
                 this.hourTextBox.Enabled = value;
                 this.minuteTextBox.Enabled = value;
                 this.secondTextBox.Enabled = value;
+                this.pmCheckBox.Enabled = value;
+            }
+
+            get
+            {
+                return this.hourTextBox.Enabled;
             }
          }
 
@@ -105,9 +111,11 @@ namespace ImagePropertyEditor
                 int year = int.Parse(yearTextBox.Text);
                 int month = int.Parse(monthTextBox.Text);
                 int day = int.Parse(dayTextBox.Text);
-                int hour = int.Parse(hourTextBox.Text);
-                int minute = int.Parse(minuteTextBox.Text);
-                int second = int.Parse(secondTextBox.Text);
+
+                // if they aren't able to enter a time, then lets set the time to 12:12:12
+                int hour = AllowTimeEditing ? int.Parse(hourTextBox.Text) : 12;
+                int minute = AllowTimeEditing ? int.Parse(minuteTextBox.Text) : 12;
+                int second = AllowTimeEditing ? int.Parse(secondTextBox.Text) : 12;
                 
                 enteredDateTime = new DateTime(year, month, day, hour, minute, second);
             }
@@ -175,6 +183,22 @@ namespace ImagePropertyEditor
             }
 
             this.yearTextBox.Focus();
+        }
+
+        /// <summary>
+        /// Allows external classes to trigger the "we are done enetering a date" logic.
+        /// </summary>
+        public void SaveDate()
+        {
+            this.OnDateEntered();
+        }
+
+        private void pmCheckBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                this.OnDateEntered();
+            }
         }
     }
 }

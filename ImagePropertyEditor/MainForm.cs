@@ -32,6 +32,14 @@ namespace ImagePropertyEditor
             this.dataGridView.AutoGenerateColumns = false;
 
             this.pictureViewDateEditor.DateEntered += PictureViewDateEditor_DateEntered;
+
+            this.pictureViewDateEditor.AllowTimeEditing = false;
+
+            // set default values for the preset fields
+            this.preset1DateTimePicker.Value = new DateTime(1970, 4, 25, 12, 12, 12);
+            this.preset2DateTimePicker.Value = new DateTime(1980, 4, 25, 12, 12, 12);
+            this.preset3DateTimePicker.Value = new DateTime(1990, 4, 25, 12, 12, 12);
+            this.preset4DateTimePicker.Value = new DateTime(2000, 4, 25, 12, 12, 12);
         }
 
         private void PictureViewDateEditor_DateEntered(object sender, DateEnteredEventArgs e)
@@ -49,6 +57,8 @@ namespace ImagePropertyEditor
                 {
                     currentImageFileInfo.NewLastModifiedTime = e.DateEntered;
                 }
+
+                this.preset4DateTimePicker.Value = e.DateEntered;
 
                 // now advance to the next image in the list
                 this.nextButton_Click(null, EventArgs.Empty);
@@ -143,6 +153,11 @@ namespace ImagePropertyEditor
             // TODO, it's possible that we'll have uncommitted changes that would be lost by this action.  Pop up a message here to confirm with the user that
             // they want to proceed if there are any changes.
 
+            ReloadImages();
+        }
+
+        private void ReloadImages()
+        {
             if (Directory.Exists(this.selectedDirectoryTextBox.Text))
             {
                 string[] fileExtensions = this.fileNameFilterTextBox.Text.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
@@ -228,7 +243,9 @@ namespace ImagePropertyEditor
         {
             //this.imageFiles.ForEach(imageFile => imageFile.SetDateTaken(DateTime.Now));
 
-            //this.imageFiles.ForEach(imageFile => imageFile.CommitChange());
+            this.imageFiles.Where(imageFile => imageFile.HasBeenUpdated).ToList().ForEach(imageFile => imageFile.CommitChange());
+
+            this.ReloadImages();
         }
 
         private void nextButton_Click(object sender, EventArgs e)
@@ -268,6 +285,30 @@ namespace ImagePropertyEditor
                     }
                 }
             }
+        }
+
+        private void preset1Button_Click(object sender, EventArgs e)
+        {
+            this.pictureViewDateEditor.SetDate(preset1DateTimePicker.Value);
+            this.pictureViewDateEditor.SaveDate();
+        }
+
+        private void preset2Button_Click(object sender, EventArgs e)
+        {
+            this.pictureViewDateEditor.SetDate(preset2DateTimePicker.Value);
+            this.pictureViewDateEditor.SaveDate();
+        }
+
+        private void preset3Button_Click(object sender, EventArgs e)
+        {
+            this.pictureViewDateEditor.SetDate(preset3DateTimePicker.Value);
+            this.pictureViewDateEditor.SaveDate();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.pictureViewDateEditor.SetDate(preset4DateTimePicker.Value);
+            this.pictureViewDateEditor.SaveDate();
         }
     }
 }

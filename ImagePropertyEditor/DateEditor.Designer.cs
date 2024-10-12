@@ -119,6 +119,7 @@ namespace ImagePropertyEditor
             this.hourTextBox.Size = new System.Drawing.Size(30, 30);
             this.hourTextBox.TabIndex = 7;
             this.hourTextBox.TextChanged += new System.EventHandler(this.hourTextBox_TextChanged);
+            this.hourTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // minuteTextBox
             // 
@@ -128,6 +129,7 @@ namespace ImagePropertyEditor
             this.minuteTextBox.Size = new System.Drawing.Size(30, 30);
             this.minuteTextBox.TabIndex = 8;
             this.minuteTextBox.TextChanged += new System.EventHandler(this.minuteTextBox_TextChanged);
+            this.minuteTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // secondTextBox
             // 
@@ -137,6 +139,7 @@ namespace ImagePropertyEditor
             this.secondTextBox.Size = new System.Drawing.Size(30, 30);
             this.secondTextBox.TabIndex = 9;
             this.secondTextBox.TextChanged += new System.EventHandler(this.secondTextBox_TextChanged);
+            this.secondTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label4
             // 
@@ -174,6 +177,7 @@ namespace ImagePropertyEditor
             this.pmCheckBox.TabIndex = 13;
             this.pmCheckBox.Text = "PM";
             this.pmCheckBox.UseVisualStyleBackColor = true;
+            this.pmCheckBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pmCheckBox_KeyPress);
             // 
             // DateEditor
             // 

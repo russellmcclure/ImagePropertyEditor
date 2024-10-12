@@ -37,15 +37,29 @@
             this.pictureViewTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.imageViewControlPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.preset4DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.preset3Button = new System.Windows.Forms.Button();
+            this.preset3DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.preset2Button = new System.Windows.Forms.Button();
+            this.preset2DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.preset1Button = new System.Windows.Forms.Button();
+            this.preset1DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.nextButton = new System.Windows.Forms.Button();
             this.prevButton = new System.Windows.Forms.Button();
             this.currentFileNameLabel = new System.Windows.Forms.Label();
             this.pictureViewDateEditor = new ImagePropertyEditor.DateEditor();
-            this.commitChangesButton = new System.Windows.Forms.Button();
             this.gridViewTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.FileColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateTakenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewDateTakenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HasBeenUpdatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.LastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewLastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dateEditor1 = new ImagePropertyEditor.DateEditor();
+            this.commitChangesButton = new System.Windows.Forms.Button();
             this.rootTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainControlsPanel = new System.Windows.Forms.Panel();
             this.fileNameFilterTextBox = new System.Windows.Forms.TextBox();
@@ -55,12 +69,6 @@
             this.selectedDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.FileColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateTakenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NewDateTakenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HasBeenUpdatedColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.LastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NewLastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -157,16 +165,108 @@
             // 
             // imageViewControlPanel
             // 
+            this.imageViewControlPanel.Controls.Add(this.button2);
+            this.imageViewControlPanel.Controls.Add(this.preset4DateTimePicker);
+            this.imageViewControlPanel.Controls.Add(this.preset3Button);
+            this.imageViewControlPanel.Controls.Add(this.preset3DateTimePicker);
+            this.imageViewControlPanel.Controls.Add(this.preset2Button);
+            this.imageViewControlPanel.Controls.Add(this.commitChangesButton);
+            this.imageViewControlPanel.Controls.Add(this.preset2DateTimePicker);
+            this.imageViewControlPanel.Controls.Add(this.preset1Button);
+            this.imageViewControlPanel.Controls.Add(this.preset1DateTimePicker);
             this.imageViewControlPanel.Controls.Add(this.nextButton);
             this.imageViewControlPanel.Controls.Add(this.prevButton);
             this.imageViewControlPanel.Controls.Add(this.currentFileNameLabel);
             this.imageViewControlPanel.Controls.Add(this.pictureViewDateEditor);
-            this.imageViewControlPanel.Controls.Add(this.commitChangesButton);
             this.imageViewControlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageViewControlPanel.Location = new System.Drawing.Point(3, 3);
             this.imageViewControlPanel.Name = "imageViewControlPanel";
             this.imageViewControlPanel.Size = new System.Drawing.Size(1642, 69);
             this.imageViewControlPanel.TabIndex = 3;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1024, 38);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Preset &4";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // preset4DateTimePicker
+            // 
+            this.preset4DateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preset4DateTimePicker.CustomFormat = "yyyy-MM-dd h:mm:ss tt";
+            this.preset4DateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preset4DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.preset4DateTimePicker.Location = new System.Drawing.Point(1105, 38);
+            this.preset4DateTimePicker.Name = "preset4DateTimePicker";
+            this.preset4DateTimePicker.Size = new System.Drawing.Size(176, 23);
+            this.preset4DateTimePicker.TabIndex = 11;
+            // 
+            // preset3Button
+            // 
+            this.preset3Button.Location = new System.Drawing.Point(1024, 9);
+            this.preset3Button.Name = "preset3Button";
+            this.preset3Button.Size = new System.Drawing.Size(75, 23);
+            this.preset3Button.TabIndex = 10;
+            this.preset3Button.Text = "Preset &3";
+            this.preset3Button.UseVisualStyleBackColor = true;
+            this.preset3Button.Click += new System.EventHandler(this.preset3Button_Click);
+            // 
+            // preset3DateTimePicker
+            // 
+            this.preset3DateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preset3DateTimePicker.CustomFormat = "yyyy-MM-dd h:mm:ss tt";
+            this.preset3DateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preset3DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.preset3DateTimePicker.Location = new System.Drawing.Point(1105, 9);
+            this.preset3DateTimePicker.Name = "preset3DateTimePicker";
+            this.preset3DateTimePicker.Size = new System.Drawing.Size(176, 23);
+            this.preset3DateTimePicker.TabIndex = 9;
+            // 
+            // preset2Button
+            // 
+            this.preset2Button.Location = new System.Drawing.Point(702, 38);
+            this.preset2Button.Name = "preset2Button";
+            this.preset2Button.Size = new System.Drawing.Size(75, 23);
+            this.preset2Button.TabIndex = 8;
+            this.preset2Button.Text = "Preset &2";
+            this.preset2Button.UseVisualStyleBackColor = true;
+            this.preset2Button.Click += new System.EventHandler(this.preset2Button_Click);
+            // 
+            // preset2DateTimePicker
+            // 
+            this.preset2DateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preset2DateTimePicker.CustomFormat = "yyyy-MM-dd h:mm:ss tt";
+            this.preset2DateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preset2DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.preset2DateTimePicker.Location = new System.Drawing.Point(783, 38);
+            this.preset2DateTimePicker.Name = "preset2DateTimePicker";
+            this.preset2DateTimePicker.Size = new System.Drawing.Size(176, 23);
+            this.preset2DateTimePicker.TabIndex = 7;
+            // 
+            // preset1Button
+            // 
+            this.preset1Button.Location = new System.Drawing.Point(702, 9);
+            this.preset1Button.Name = "preset1Button";
+            this.preset1Button.Size = new System.Drawing.Size(75, 23);
+            this.preset1Button.TabIndex = 6;
+            this.preset1Button.Text = "Preset &1";
+            this.preset1Button.UseVisualStyleBackColor = true;
+            this.preset1Button.Click += new System.EventHandler(this.preset1Button_Click);
+            // 
+            // preset1DateTimePicker
+            // 
+            this.preset1DateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preset1DateTimePicker.CustomFormat = "yyyy-MM-dd h:mm:ss tt";
+            this.preset1DateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preset1DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.preset1DateTimePicker.Location = new System.Drawing.Point(783, 9);
+            this.preset1DateTimePicker.Name = "preset1DateTimePicker";
+            this.preset1DateTimePicker.Size = new System.Drawing.Size(176, 23);
+            this.preset1DateTimePicker.TabIndex = 5;
             // 
             // nextButton
             // 
@@ -201,20 +301,10 @@
             // pictureViewDateEditor
             // 
             this.pictureViewDateEditor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pictureViewDateEditor.Location = new System.Drawing.Point(773, 21);
+            this.pictureViewDateEditor.Location = new System.Drawing.Point(439, 16);
             this.pictureViewDateEditor.Name = "pictureViewDateEditor";
-            this.pictureViewDateEditor.Size = new System.Drawing.Size(539, 38);
+            this.pictureViewDateEditor.Size = new System.Drawing.Size(236, 38);
             this.pictureViewDateEditor.TabIndex = 1;
-            // 
-            // commitChangesButton
-            // 
-            this.commitChangesButton.Location = new System.Drawing.Point(1480, 16);
-            this.commitChangesButton.Name = "commitChangesButton";
-            this.commitChangesButton.Size = new System.Drawing.Size(138, 43);
-            this.commitChangesButton.TabIndex = 0;
-            this.commitChangesButton.Text = "Commit All Changes";
-            this.commitChangesButton.UseVisualStyleBackColor = true;
-            this.commitChangesButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // gridViewTabPage
             // 
@@ -246,6 +336,54 @@
             this.dataGridView.Size = new System.Drawing.Size(1648, 786);
             this.dataGridView.TabIndex = 3;
             // 
+            // FileColumn
+            // 
+            this.FileColumn.DataPropertyName = "FullName";
+            this.FileColumn.HeaderText = "File";
+            this.FileColumn.Name = "FileColumn";
+            this.FileColumn.ReadOnly = true;
+            this.FileColumn.Width = 48;
+            // 
+            // DateTakenColumn
+            // 
+            this.DateTakenColumn.DataPropertyName = "DateTaken";
+            this.DateTakenColumn.HeaderText = "Date Taken";
+            this.DateTakenColumn.Name = "DateTakenColumn";
+            this.DateTakenColumn.ReadOnly = true;
+            this.DateTakenColumn.Width = 82;
+            // 
+            // NewDateTakenColumn
+            // 
+            this.NewDateTakenColumn.DataPropertyName = "NewDateTaken";
+            this.NewDateTakenColumn.HeaderText = "New Date Taken";
+            this.NewDateTakenColumn.Name = "NewDateTakenColumn";
+            this.NewDateTakenColumn.ReadOnly = true;
+            this.NewDateTakenColumn.Width = 105;
+            // 
+            // HasBeenUpdatedColumn
+            // 
+            this.HasBeenUpdatedColumn.DataPropertyName = "HasBeenUpdated";
+            this.HasBeenUpdatedColumn.HeaderText = "Updated";
+            this.HasBeenUpdatedColumn.Name = "HasBeenUpdatedColumn";
+            this.HasBeenUpdatedColumn.ReadOnly = true;
+            this.HasBeenUpdatedColumn.Width = 54;
+            // 
+            // LastModifiedColumn
+            // 
+            this.LastModifiedColumn.DataPropertyName = "LastModifiedTime";
+            this.LastModifiedColumn.HeaderText = "Last Modified";
+            this.LastModifiedColumn.Name = "LastModifiedColumn";
+            this.LastModifiedColumn.ReadOnly = true;
+            this.LastModifiedColumn.Width = 88;
+            // 
+            // NewLastModifiedColumn
+            // 
+            this.NewLastModifiedColumn.DataPropertyName = "NewLastModifiedTime";
+            this.NewLastModifiedColumn.HeaderText = "New Last Modified";
+            this.NewLastModifiedColumn.Name = "NewLastModifiedColumn";
+            this.NewLastModifiedColumn.ReadOnly = true;
+            this.NewLastModifiedColumn.Width = 110;
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dateEditor1);
@@ -262,8 +400,18 @@
             this.dateEditor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateEditor1.Location = new System.Drawing.Point(373, 57);
             this.dateEditor1.Name = "dateEditor1";
-            this.dateEditor1.Size = new System.Drawing.Size(226, 38);
+            this.dateEditor1.Size = new System.Drawing.Size(571, 38);
             this.dateEditor1.TabIndex = 0;
+            // 
+            // commitChangesButton
+            // 
+            this.commitChangesButton.Location = new System.Drawing.Point(1453, 11);
+            this.commitChangesButton.Name = "commitChangesButton";
+            this.commitChangesButton.Size = new System.Drawing.Size(138, 43);
+            this.commitChangesButton.TabIndex = 0;
+            this.commitChangesButton.Text = "Commit All Changes";
+            this.commitChangesButton.UseVisualStyleBackColor = true;
+            this.commitChangesButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // rootTableLayoutPanel
             // 
@@ -352,54 +500,6 @@
             // 
             this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
             // 
-            // FileColumn
-            // 
-            this.FileColumn.DataPropertyName = "FullName";
-            this.FileColumn.HeaderText = "File";
-            this.FileColumn.Name = "FileColumn";
-            this.FileColumn.ReadOnly = true;
-            this.FileColumn.Width = 48;
-            // 
-            // DateTakenColumn
-            // 
-            this.DateTakenColumn.DataPropertyName = "DateTaken";
-            this.DateTakenColumn.HeaderText = "Date Taken";
-            this.DateTakenColumn.Name = "DateTakenColumn";
-            this.DateTakenColumn.ReadOnly = true;
-            this.DateTakenColumn.Width = 89;
-            // 
-            // NewDateTakenColumn
-            // 
-            this.NewDateTakenColumn.DataPropertyName = "NewDateTaken";
-            this.NewDateTakenColumn.HeaderText = "New Date Taken";
-            this.NewDateTakenColumn.Name = "NewDateTakenColumn";
-            this.NewDateTakenColumn.ReadOnly = true;
-            this.NewDateTakenColumn.Width = 105;
-            // 
-            // HasBeenUpdatedColumn
-            // 
-            this.HasBeenUpdatedColumn.DataPropertyName = "HasBeenUpdated";
-            this.HasBeenUpdatedColumn.HeaderText = "Updated";
-            this.HasBeenUpdatedColumn.Name = "HasBeenUpdatedColumn";
-            this.HasBeenUpdatedColumn.ReadOnly = true;
-            this.HasBeenUpdatedColumn.Width = 54;
-            // 
-            // LastModifiedColumn
-            // 
-            this.LastModifiedColumn.DataPropertyName = "LastModifiedTime";
-            this.LastModifiedColumn.HeaderText = "Last Modified";
-            this.LastModifiedColumn.Name = "LastModifiedColumn";
-            this.LastModifiedColumn.ReadOnly = true;
-            this.LastModifiedColumn.Width = 88;
-            // 
-            // NewLastModifiedColumn
-            // 
-            this.NewLastModifiedColumn.DataPropertyName = "NewLastModifiedTime";
-            this.NewLastModifiedColumn.HeaderText = "New Last Modified";
-            this.NewLastModifiedColumn.Name = "NewLastModifiedColumn";
-            this.NewLastModifiedColumn.ReadOnly = true;
-            this.NewLastModifiedColumn.Width = 110;
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -471,6 +571,14 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn HasBeenUpdatedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastModifiedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NewLastModifiedColumn;
+        private System.Windows.Forms.DateTimePicker preset1DateTimePicker;
+        private System.Windows.Forms.Button preset1Button;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DateTimePicker preset4DateTimePicker;
+        private System.Windows.Forms.Button preset3Button;
+        private System.Windows.Forms.DateTimePicker preset3DateTimePicker;
+        private System.Windows.Forms.Button preset2Button;
+        private System.Windows.Forms.DateTimePicker preset2DateTimePicker;
     }
 }
 
