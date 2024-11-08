@@ -113,13 +113,23 @@ namespace ImagePropertyEditor
                 int day = int.Parse(dayTextBox.Text);
 
                 // if they aren't able to enter a time, then lets set the time to 12:12:12
-                int hour = AllowTimeEditing ? int.Parse(hourTextBox.Text) : 12;
+                int amPMHour = AllowTimeEditing ? int.Parse(hourTextBox.Text) : 12;
                 int minute = AllowTimeEditing ? int.Parse(minuteTextBox.Text) : 12;
                 int second = AllowTimeEditing ? int.Parse(secondTextBox.Text) : 12;
-                
-                enteredDateTime = new DateTime(year, month, day, hour, minute, second);
+                bool isPM = pmCheckBox.Checked;
+                if (AMPMDateTimeUtility.IsValid(year, month, day, amPMHour, minute, second, isPM))
+                {
+                    enteredDateTime = new DateTime(year, month, day, AMPMDateTimeUtility.GetMilitaryHour(amPMHour, isPM), minute, second);
+                }
+                else
+                {
+                    throw new Exception("Invalid date/time");
+                }
             }
-            catch { }
+            catch 
+            {
+                MessageBox.Show("Invalid Date/Time entered!", "Bad Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             return enteredDateTime;
         }
@@ -172,7 +182,7 @@ namespace ImagePropertyEditor
                 this.yearTextBox.Text = date.Value.Year.ToString();
                 this.monthTextBox.Text = date.Value.Month.ToString();
                 this.dayTextBox.Text = date.Value.Day.ToString();
-                this.hourTextBox.Text = date.Value.Hour.ToString();
+                this.hourTextBox.Text = AMPMDateTimeUtility.GetAMPMHour(date.Value.Hour).ToString();
                 this.minuteTextBox.Text = date.Value.Minute.ToString();
                 this.secondTextBox.Text = date.Value.Second.ToString();
                 this.pmCheckBox.Checked = date.Value.Hour >= 12;

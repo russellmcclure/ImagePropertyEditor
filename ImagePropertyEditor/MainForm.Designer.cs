@@ -42,6 +42,7 @@
             this.preset3Button = new System.Windows.Forms.Button();
             this.preset3DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.preset2Button = new System.Windows.Forms.Button();
+            this.commitChangesButton = new System.Windows.Forms.Button();
             this.preset2DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.preset1Button = new System.Windows.Forms.Button();
             this.preset1DateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -59,7 +60,6 @@
             this.NewLastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dateEditor1 = new ImagePropertyEditor.DateEditor();
-            this.commitChangesButton = new System.Windows.Forms.Button();
             this.rootTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainControlsPanel = new System.Windows.Forms.Panel();
             this.fileNameFilterTextBox = new System.Windows.Forms.TextBox();
@@ -186,7 +186,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1024, 38);
+            this.button2.Location = new System.Drawing.Point(1177, 38);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 12;
@@ -200,14 +200,14 @@
             this.preset4DateTimePicker.CustomFormat = "yyyy-MM-dd h:mm:ss tt";
             this.preset4DateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preset4DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.preset4DateTimePicker.Location = new System.Drawing.Point(1105, 38);
+            this.preset4DateTimePicker.Location = new System.Drawing.Point(1258, 38);
             this.preset4DateTimePicker.Name = "preset4DateTimePicker";
             this.preset4DateTimePicker.Size = new System.Drawing.Size(176, 23);
             this.preset4DateTimePicker.TabIndex = 11;
             // 
             // preset3Button
             // 
-            this.preset3Button.Location = new System.Drawing.Point(1024, 9);
+            this.preset3Button.Location = new System.Drawing.Point(1177, 9);
             this.preset3Button.Name = "preset3Button";
             this.preset3Button.Size = new System.Drawing.Size(75, 23);
             this.preset3Button.TabIndex = 10;
@@ -221,14 +221,14 @@
             this.preset3DateTimePicker.CustomFormat = "yyyy-MM-dd h:mm:ss tt";
             this.preset3DateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preset3DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.preset3DateTimePicker.Location = new System.Drawing.Point(1105, 9);
+            this.preset3DateTimePicker.Location = new System.Drawing.Point(1258, 9);
             this.preset3DateTimePicker.Name = "preset3DateTimePicker";
             this.preset3DateTimePicker.Size = new System.Drawing.Size(176, 23);
             this.preset3DateTimePicker.TabIndex = 9;
             // 
             // preset2Button
             // 
-            this.preset2Button.Location = new System.Drawing.Point(702, 38);
+            this.preset2Button.Location = new System.Drawing.Point(855, 38);
             this.preset2Button.Name = "preset2Button";
             this.preset2Button.Size = new System.Drawing.Size(75, 23);
             this.preset2Button.TabIndex = 8;
@@ -236,20 +236,30 @@
             this.preset2Button.UseVisualStyleBackColor = true;
             this.preset2Button.Click += new System.EventHandler(this.preset2Button_Click);
             // 
+            // commitChangesButton
+            // 
+            this.commitChangesButton.Location = new System.Drawing.Point(1453, 11);
+            this.commitChangesButton.Name = "commitChangesButton";
+            this.commitChangesButton.Size = new System.Drawing.Size(138, 43);
+            this.commitChangesButton.TabIndex = 0;
+            this.commitChangesButton.Text = "Commit All Changes";
+            this.commitChangesButton.UseVisualStyleBackColor = true;
+            this.commitChangesButton.Click += new System.EventHandler(this.button2_Click);
+            // 
             // preset2DateTimePicker
             // 
             this.preset2DateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preset2DateTimePicker.CustomFormat = "yyyy-MM-dd h:mm:ss tt";
             this.preset2DateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preset2DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.preset2DateTimePicker.Location = new System.Drawing.Point(783, 38);
+            this.preset2DateTimePicker.Location = new System.Drawing.Point(936, 38);
             this.preset2DateTimePicker.Name = "preset2DateTimePicker";
             this.preset2DateTimePicker.Size = new System.Drawing.Size(176, 23);
             this.preset2DateTimePicker.TabIndex = 7;
             // 
             // preset1Button
             // 
-            this.preset1Button.Location = new System.Drawing.Point(702, 9);
+            this.preset1Button.Location = new System.Drawing.Point(855, 9);
             this.preset1Button.Name = "preset1Button";
             this.preset1Button.Size = new System.Drawing.Size(75, 23);
             this.preset1Button.TabIndex = 6;
@@ -263,7 +273,7 @@
             this.preset1DateTimePicker.CustomFormat = "yyyy-MM-dd h:mm:ss tt";
             this.preset1DateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preset1DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.preset1DateTimePicker.Location = new System.Drawing.Point(783, 9);
+            this.preset1DateTimePicker.Location = new System.Drawing.Point(936, 9);
             this.preset1DateTimePicker.Name = "preset1DateTimePicker";
             this.preset1DateTimePicker.Size = new System.Drawing.Size(176, 23);
             this.preset1DateTimePicker.TabIndex = 5;
@@ -300,10 +310,11 @@
             // 
             // pictureViewDateEditor
             // 
+            this.pictureViewDateEditor.AllowTimeEditing = true;
             this.pictureViewDateEditor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pictureViewDateEditor.Location = new System.Drawing.Point(439, 16);
+            this.pictureViewDateEditor.Location = new System.Drawing.Point(310, 16);
             this.pictureViewDateEditor.Name = "pictureViewDateEditor";
-            this.pictureViewDateEditor.Size = new System.Drawing.Size(236, 38);
+            this.pictureViewDateEditor.Size = new System.Drawing.Size(532, 38);
             this.pictureViewDateEditor.TabIndex = 1;
             // 
             // gridViewTabPage
@@ -397,21 +408,12 @@
             // 
             // dateEditor1
             // 
+            this.dateEditor1.AllowTimeEditing = true;
             this.dateEditor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateEditor1.Location = new System.Drawing.Point(373, 57);
             this.dateEditor1.Name = "dateEditor1";
             this.dateEditor1.Size = new System.Drawing.Size(571, 38);
             this.dateEditor1.TabIndex = 0;
-            // 
-            // commitChangesButton
-            // 
-            this.commitChangesButton.Location = new System.Drawing.Point(1453, 11);
-            this.commitChangesButton.Name = "commitChangesButton";
-            this.commitChangesButton.Size = new System.Drawing.Size(138, 43);
-            this.commitChangesButton.TabIndex = 0;
-            this.commitChangesButton.Text = "Commit All Changes";
-            this.commitChangesButton.UseVisualStyleBackColor = true;
-            this.commitChangesButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // rootTableLayoutPanel
             // 

@@ -179,6 +179,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AMPMDateTime.cs" />
     <Compile Include="DateEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>

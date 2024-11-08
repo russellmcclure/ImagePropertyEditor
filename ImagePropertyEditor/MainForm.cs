@@ -33,7 +33,7 @@ namespace ImagePropertyEditor
 
             this.pictureViewDateEditor.DateEntered += PictureViewDateEditor_DateEntered;
 
-            this.pictureViewDateEditor.AllowTimeEditing = false;
+            this.pictureViewDateEditor.AllowTimeEditing = true;
 
             // set default values for the preset fields
             this.preset1DateTimePicker.Value = new DateTime(1970, 4, 25, 12, 12, 12);
@@ -49,15 +49,16 @@ namespace ImagePropertyEditor
             {
                 ImageFileInfo currentImageFileInfo = this.GetCurrentImageFileInfo();
                 
+                // if this file type supports ExIf, then lets set the new date there
                 if (currentImageFileInfo.HasExif)
                 {
                     currentImageFileInfo.NewDateTaken = e.DateEntered;
                 }
-                else
-                {
-                    currentImageFileInfo.NewLastModifiedTime = e.DateEntered;
-                }
 
+                // lets always set the modified date
+                currentImageFileInfo.NewLastModifiedTime = e.DateEntered;
+
+                // lets save this date as one of our presets to make it easy to reuse it later
                 this.preset4DateTimePicker.Value = e.DateEntered;
 
                 // now advance to the next image in the list
