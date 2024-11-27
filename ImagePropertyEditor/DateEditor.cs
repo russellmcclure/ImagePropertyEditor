@@ -35,6 +35,39 @@ namespace ImagePropertyEditor
             }
          }
 
+        public void SetDate(DateTime? date)
+        {
+            if (date.HasValue)
+            {
+                this.yearTextBox.Text = date.Value.Year.ToString();
+                this.monthTextBox.Text = date.Value.Month.ToString();
+                this.dayTextBox.Text = date.Value.Day.ToString();
+                this.hourTextBox.Text = AMPMDateTimeUtility.GetAMPMHour(date.Value.Hour).ToString();
+                this.minuteTextBox.Text = date.Value.Minute.ToString();
+                this.secondTextBox.Text = date.Value.Second.ToString();
+                this.pmCheckBox.Checked = date.Value.Hour >= 12;
+            }
+            else
+            {
+                this.Clear();
+            }
+
+            this.yearTextBox.Focus();
+        }
+
+        /// <summary>
+        /// Allows external classes to trigger the "we are done enetering a date" logic.
+        /// </summary>
+        public void SaveDate()
+        {
+            this.OnDateEntered();
+        }
+
+        public DateTime? GetDate()
+        {
+            return this.ParseEnteredDateTime();
+        }
+
         private void textBox_GotFocus(object sender, EventArgs e)
         {
             var textBox = sender as TextBox;
@@ -173,34 +206,6 @@ namespace ImagePropertyEditor
             this.minuteTextBox.Text = "12";
             this.secondTextBox.Text = "12";
             this.pmCheckBox.Checked = true;
-        }
-
-        public void SetDate(DateTime? date)
-        {
-            if (date.HasValue)
-            {
-                this.yearTextBox.Text = date.Value.Year.ToString();
-                this.monthTextBox.Text = date.Value.Month.ToString();
-                this.dayTextBox.Text = date.Value.Day.ToString();
-                this.hourTextBox.Text = AMPMDateTimeUtility.GetAMPMHour(date.Value.Hour).ToString();
-                this.minuteTextBox.Text = date.Value.Minute.ToString();
-                this.secondTextBox.Text = date.Value.Second.ToString();
-                this.pmCheckBox.Checked = date.Value.Hour >= 12;
-            }
-            else
-            {
-                this.Clear();
-            }
-
-            this.yearTextBox.Focus();
-        }
-
-        /// <summary>
-        /// Allows external classes to trigger the "we are done enetering a date" logic.
-        /// </summary>
-        public void SaveDate()
-        {
-            this.OnDateEntered();
         }
 
         private void pmCheckBox_KeyPress(object sender, KeyPressEventArgs e)

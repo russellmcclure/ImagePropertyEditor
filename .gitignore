@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ImagePropertyEditor
+/ImagePropertyEditor/bin/Debug
+/ImagePropertyEditor/obj/Debug

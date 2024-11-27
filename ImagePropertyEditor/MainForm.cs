@@ -16,6 +16,7 @@ namespace ImagePropertyEditor
         private EditorControls editorControls;
         private BindingList<ImageFileInfo> imageFiles;
         private int currentImageFileIndex;
+        private string startingMainFormTitle;
 
         public event EventHandler ImageFilesLoaded;
 
@@ -48,7 +49,7 @@ namespace ImagePropertyEditor
             if (this.imagesLoaded)
             {
                 ImageFileInfo currentImageFileInfo = this.GetCurrentImageFileInfo();
-                
+
                 // if this file type supports ExIf, then lets set the new date there
                 if (currentImageFileInfo.HasExif)
                 {
@@ -59,7 +60,7 @@ namespace ImagePropertyEditor
                 currentImageFileInfo.NewLastModifiedTime = e.DateEntered;
 
                 // lets save this date as one of our presets to make it easy to reuse it later
-                this.preset4DateTimePicker.Value = e.DateEntered;
+                // MAYBE WE DON"T NEED THIS ANYMORE???    this.preset4DateTimePicker.Value = e.DateEntered;
 
                 // now advance to the next image in the list
                 this.nextButton_Click(null, EventArgs.Empty);
@@ -82,7 +83,7 @@ namespace ImagePropertyEditor
         private void MainForm_DragDrop(object sender, DragEventArgs e)
         {
             var droppedData = (string[])e.Data.GetData(DataFormats.FileDrop);
-            
+
             // if only one item was dropped and it's a directory
             if (droppedData.Length == 1 && Directory.Exists(droppedData[0]))
             {
@@ -111,6 +112,19 @@ namespace ImagePropertyEditor
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void UpdateMainFormTitle(string currentImageName = null)
+        {
+            if (!string.IsNullOrEmpty(currentImageName))
+            {
+                this.Text = this.startingMainFormTitle + " - " + currentImageName;
+            }
+            else
+            {
+                this.Text = this.startingMainFormTitle;
+            }
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -169,7 +183,17 @@ namespace ImagePropertyEditor
                 }
 
                 // now load up the meta data for each of the image files we've found
-                this.imageFiles = new BindingList<ImageFileInfo>(imageFileNames.Select(f => new ImageFileInfo(f)).ToList());
+                List<ImageFileInfo> imageFilesTemp = imageFileNames.Select(f => new ImageFileInfo(f)).ToList();
+
+                // we may remove some items from the list before we display them in the GUI
+                if (this.onlyIncludeDateTakenNeededCheckBox.Checked)
+                {
+                    // lets remove any that have already had their Date Taken set or whose ExIf I can't edit programmatically
+                    imageFilesTemp.RemoveAll(f => f.DateTaken.HasValue || !f.CanSetDateTaken);
+                }
+
+                // create a bindinglist of our items for display in the GUI
+                this.imageFiles = new BindingList<ImageFileInfo>(imageFilesTemp);
 
                 this.OnImageFilesLoaded(EventArgs.Empty);
 
@@ -213,7 +237,7 @@ namespace ImagePropertyEditor
         private void ClearImageSelection()
         {
             this.mainPictureBox.ImageLocation = null;
-            this.currentFileNameLabel.Text = string.Empty;
+            this.UpdateMainFormTitle();
         }
 
         private ImageFileInfo GetCurrentImageFileInfo()
@@ -225,12 +249,19 @@ namespace ImagePropertyEditor
         {
             var newImageFileInfo = this.GetCurrentImageFileInfo();
             this.mainPictureBox.ImageLocation = newImageFileInfo.FullName;
-            this.currentFileNameLabel.Text = Path.GetFileName(newImageFileInfo.FullName);
+            this.UpdateMainFormTitle(Path.GetFileName(newImageFileInfo.FullName));
 
             this.dataGridView.ClearSelection();
             this.dataGridView.Rows[this.currentImageFileIndex].Selected = true;
 
-            this.pictureViewDateEditor.SetDate(newImageFileInfo.DateTaken);
+            if (newImageFileInfo.NewDateTaken.HasValue)
+            {
+                this.pictureViewDateEditor.SetDate(newImageFileInfo.NewDateTaken);
+            }
+            else if (newImageFileInfo.DateTaken.HasValue)
+            {
+                this.pictureViewDateEditor.SetDate(newImageFileInfo.DateTaken);
+            }
         }
 
         protected virtual void OnImageFilesLoaded(EventArgs e)
@@ -274,7 +305,7 @@ namespace ImagePropertyEditor
                 if (e.KeyCode == Keys.OemPeriod)
                 {
                     if (this.nextButton.Enabled)
-                    { 
+                    {
                         this.nextButton.PerformClick();
                     }
                 }
@@ -288,28 +319,126 @@ namespace ImagePropertyEditor
             }
         }
 
-        private void preset1Button_Click(object sender, EventArgs e)
+        private void pictureViewDateEditor_Load(object sender, EventArgs e)
         {
-            this.pictureViewDateEditor.SetDate(preset1DateTimePicker.Value);
+
+        }
+
+        private void applyDateButton_Click(object sender, EventArgs e)
+        {
             this.pictureViewDateEditor.SaveDate();
         }
 
-        private void preset2Button_Click(object sender, EventArgs e)
+        private void applyPreset1Button_Click(object sender, EventArgs e)
         {
-            this.pictureViewDateEditor.SetDate(preset2DateTimePicker.Value);
+            ApplyPreset(preset1DateTimePicker);
+        }
+
+        private void applyPreset2Button_Click(object sender, EventArgs e)
+        {
+            ApplyPreset(preset2DateTimePicker);
+        }
+
+        private void applyPreset3Button_Click(object sender, EventArgs e)
+        {
+            ApplyPreset(preset3DateTimePicker);
+        }
+
+        private void applyPreset4Button_Click(object sender, EventArgs e)
+        {
+            ApplyPreset(preset4DateTimePicker);
+        }
+
+        private void ApplyPreset(DateTimePicker dateTimePicker)
+        {
+            this.pictureViewDateEditor.SetDate(dateTimePicker.Value);
             this.pictureViewDateEditor.SaveDate();
         }
 
-        private void preset3Button_Click(object sender, EventArgs e)
+        private void incAndApplyPreset1Button_Click(object sender, EventArgs e)
         {
-            this.pictureViewDateEditor.SetDate(preset3DateTimePicker.Value);
-            this.pictureViewDateEditor.SaveDate();
+            IncrementAndApplyPreset(preset1DateTimePicker);
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void incAndApplyPreset2Button_Click(object sender, EventArgs e)
         {
-            this.pictureViewDateEditor.SetDate(preset4DateTimePicker.Value);
-            this.pictureViewDateEditor.SaveDate();
+            IncrementAndApplyPreset(preset2DateTimePicker);
+        }
+
+        private void incAndApplyPreset3Button_Click(object sender, EventArgs e)
+        {
+            IncrementAndApplyPreset(preset3DateTimePicker);
+        }
+
+        private void incAndApplyPreset4Button_Click(object sender, EventArgs e)
+        {
+            IncrementAndApplyPreset(preset4DateTimePicker);
+        }
+
+        private void IncrementAndApplyPreset(DateTimePicker dateTimePicker)
+        {
+            UpdateAndApplyPreset(dateTimePicker, new TimeSpan(0, 1, 0));
+        }
+
+        private void UpdateAndApplyPreset(DateTimePicker dateTimePicker, TimeSpan timeChange)
+        {
+            dateTimePicker.Value = dateTimePicker.Value.Add(timeChange);
+            ApplyPreset(dateTimePicker);
+        }
+
+        private void decAndApplyPreset1Button_Click(object sender, EventArgs e)
+        {
+            DecrementAndApplyPreset(preset1DateTimePicker);
+        }
+
+        private void decAndApplyPreset2Button_Click(object sender, EventArgs e)
+        {
+            DecrementAndApplyPreset(preset2DateTimePicker);
+        }
+
+        private void decAndApplyPreset3Button_Click(object sender, EventArgs e)
+        {
+            DecrementAndApplyPreset(preset3DateTimePicker);
+        }
+
+        private void decAndApplyPreset4Button_Click(object sender, EventArgs e)
+        {
+            DecrementAndApplyPreset(preset4DateTimePicker);
+        }
+
+        private void DecrementAndApplyPreset(DateTimePicker dateTimePicker)
+        {
+            UpdateAndApplyPreset(dateTimePicker, new TimeSpan(0, -1, 0));
+        }
+
+        private void storeAsPreset1Button_Click(object sender, EventArgs e)
+        {
+            StoreAsPreset(preset1DateTimePicker);
+        }
+
+        private void storeAsPreset2Button_Click(object sender, EventArgs e)
+        {
+            StoreAsPreset(preset2DateTimePicker);
+        }
+
+        private void storeAsPreset3Button_Click(object sender, EventArgs e)
+        {
+            StoreAsPreset(preset3DateTimePicker);
+        }
+
+        private void storeAsPreset4Button_Click(object sender, EventArgs e)
+        {
+            StoreAsPreset(preset4DateTimePicker);
+        }
+
+        private void StoreAsPreset(DateTimePicker dateTimePicker)
+        {
+            DateTime? cuurentDateValue = this.pictureViewDateEditor.GetDate();
+
+            if (cuurentDateValue.HasValue)
+            {
+                dateTimePicker.Value = cuurentDateValue.Value;
+            }
         }
     }
 }
