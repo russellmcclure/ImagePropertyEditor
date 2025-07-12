@@ -440,5 +440,33 @@ namespace ImagePropertyEditor
                 dateTimePicker.Value = cuurentDateValue.Value;
             }
         }
+
+        private void applyDeltaToSiblings_Click(object sender, EventArgs e)
+        {
+            ImageFileInfo currentImageFileInfo = this.GetCurrentImageFileInfo();
+            if (currentImageFileInfo != null
+                && currentImageFileInfo.DateTaken.HasValue && currentImageFileInfo.NewDateTaken.HasValue)
+            {
+                TimeSpan delta = currentImageFileInfo.NewDateTaken.Value - currentImageFileInfo.DateTaken.Value;
+
+                int siblingMonth = currentImageFileInfo.DateTaken.Value.Month;
+                int siblingYear = currentImageFileInfo.DateTaken.Value.Year;
+
+                // get all current images with the same month and year but don't already have a NewDateTaken set
+                foreach (var imageFile in this.imageFiles)
+                {
+                    // to be a sibling, it must have an original DateTaken that has a value and whose year and month match our target.
+                    // it also cannot have already had it's NewDateTaken set yet.
+                    if (imageFile.DateTaken.HasValue && imageFile.DateTaken.Value.Year == siblingYear && imageFile.DateTaken.Value.Month == siblingMonth && !imageFile.NewDateTaken.HasValue)
+                    {
+                        imageFile.NewDateTaken = imageFile.DateTaken.Value + delta;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("You need to have an existing Date Taken and also have chosen a New Date Taken in order to use this as a delta for other images.");
+            }
+        }
     }
 }

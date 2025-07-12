@@ -39,6 +39,23 @@
             this.pictureViewTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.imageViewControlPanel = new System.Windows.Forms.Panel();
+            this.decAndApplyPreset4Button = new System.Windows.Forms.Button();
+            this.storeAsPreset4Button = new System.Windows.Forms.Button();
+            this.applyPreset4Button = new System.Windows.Forms.Button();
+            this.incAndApplyPreset4Button = new System.Windows.Forms.Button();
+            this.decAndApplyPreset3Button = new System.Windows.Forms.Button();
+            this.storeAsPreset3Button = new System.Windows.Forms.Button();
+            this.applyPreset3Button = new System.Windows.Forms.Button();
+            this.incAndApplyPreset3Button = new System.Windows.Forms.Button();
+            this.decAndApplyPreset2Button = new System.Windows.Forms.Button();
+            this.storeAsPreset2Button = new System.Windows.Forms.Button();
+            this.applyPreset2Button = new System.Windows.Forms.Button();
+            this.incAndApplyPreset2Button = new System.Windows.Forms.Button();
+            this.decAndApplyPreset1Button = new System.Windows.Forms.Button();
+            this.storeAsPreset1Button = new System.Windows.Forms.Button();
+            this.applyPreset1Button = new System.Windows.Forms.Button();
+            this.incAndApplyPreset1Button = new System.Windows.Forms.Button();
+            this.applyDateButton = new System.Windows.Forms.Button();
             this.preset4DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.preset3DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.commitChangesButton = new System.Windows.Forms.Button();
@@ -46,6 +63,7 @@
             this.preset1DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.nextButton = new System.Windows.Forms.Button();
             this.prevButton = new System.Windows.Forms.Button();
+            this.pictureViewDateEditor = new ImagePropertyEditor.DateEditor();
             this.gridViewTabPage = new System.Windows.Forms.TabPage();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.FileColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +73,7 @@
             this.LastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NewLastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dateEditor1 = new ImagePropertyEditor.DateEditor();
             this.rootTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainControlsPanel = new System.Windows.Forms.Panel();
             this.onlyIncludeDateTakenNeededCheckBox = new System.Windows.Forms.CheckBox();
@@ -65,26 +84,8 @@
             this.selectedDirectoryTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.applyDateButton = new System.Windows.Forms.Button();
-            this.incAndApplyPreset1Button = new System.Windows.Forms.Button();
-            this.applyPreset1Button = new System.Windows.Forms.Button();
-            this.storeAsPreset1Button = new System.Windows.Forms.Button();
-            this.decAndApplyPreset1Button = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.decAndApplyPreset2Button = new System.Windows.Forms.Button();
-            this.storeAsPreset2Button = new System.Windows.Forms.Button();
-            this.applyPreset2Button = new System.Windows.Forms.Button();
-            this.incAndApplyPreset2Button = new System.Windows.Forms.Button();
-            this.decAndApplyPreset4Button = new System.Windows.Forms.Button();
-            this.storeAsPreset4Button = new System.Windows.Forms.Button();
-            this.applyPreset4Button = new System.Windows.Forms.Button();
-            this.incAndApplyPreset4Button = new System.Windows.Forms.Button();
-            this.decAndApplyPreset3Button = new System.Windows.Forms.Button();
-            this.storeAsPreset3Button = new System.Windows.Forms.Button();
-            this.applyPreset3Button = new System.Windows.Forms.Button();
-            this.incAndApplyPreset3Button = new System.Windows.Forms.Button();
-            this.pictureViewDateEditor = new ImagePropertyEditor.DateEditor();
-            this.dateEditor1 = new ImagePropertyEditor.DateEditor();
+            this.applyDeltaToSiblings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -181,6 +182,7 @@
             // 
             // imageViewControlPanel
             // 
+            this.imageViewControlPanel.Controls.Add(this.applyDeltaToSiblings);
             this.imageViewControlPanel.Controls.Add(this.decAndApplyPreset4Button);
             this.imageViewControlPanel.Controls.Add(this.storeAsPreset4Button);
             this.imageViewControlPanel.Controls.Add(this.applyPreset4Button);
@@ -212,6 +214,192 @@
             this.imageViewControlPanel.Size = new System.Drawing.Size(1873, 69);
             this.imageViewControlPanel.TabIndex = 3;
             // 
+            // decAndApplyPreset4Button
+            // 
+            this.decAndApplyPreset4Button.Image = ((System.Drawing.Image)(resources.GetObject("decAndApplyPreset4Button.Image")));
+            this.decAndApplyPreset4Button.Location = new System.Drawing.Point(1287, 35);
+            this.decAndApplyPreset4Button.Name = "decAndApplyPreset4Button";
+            this.decAndApplyPreset4Button.Size = new System.Drawing.Size(26, 26);
+            this.decAndApplyPreset4Button.TabIndex = 29;
+            this.toolTip1.SetToolTip(this.decAndApplyPreset4Button, "Decrement Time and Apply");
+            this.decAndApplyPreset4Button.UseVisualStyleBackColor = true;
+            this.decAndApplyPreset4Button.Click += new System.EventHandler(this.decAndApplyPreset4Button_Click);
+            // 
+            // storeAsPreset4Button
+            // 
+            this.storeAsPreset4Button.Image = ((System.Drawing.Image)(resources.GetObject("storeAsPreset4Button.Image")));
+            this.storeAsPreset4Button.Location = new System.Drawing.Point(1319, 35);
+            this.storeAsPreset4Button.Name = "storeAsPreset4Button";
+            this.storeAsPreset4Button.Size = new System.Drawing.Size(26, 26);
+            this.storeAsPreset4Button.TabIndex = 28;
+            this.toolTip1.SetToolTip(this.storeAsPreset4Button, "Store as Preset");
+            this.storeAsPreset4Button.UseVisualStyleBackColor = true;
+            this.storeAsPreset4Button.Click += new System.EventHandler(this.storeAsPreset4Button_Click);
+            // 
+            // applyPreset4Button
+            // 
+            this.applyPreset4Button.Image = ((System.Drawing.Image)(resources.GetObject("applyPreset4Button.Image")));
+            this.applyPreset4Button.Location = new System.Drawing.Point(1223, 35);
+            this.applyPreset4Button.Name = "applyPreset4Button";
+            this.applyPreset4Button.Size = new System.Drawing.Size(26, 26);
+            this.applyPreset4Button.TabIndex = 27;
+            this.toolTip1.SetToolTip(this.applyPreset4Button, "Apply to Image");
+            this.applyPreset4Button.UseVisualStyleBackColor = true;
+            this.applyPreset4Button.Click += new System.EventHandler(this.applyPreset4Button_Click);
+            // 
+            // incAndApplyPreset4Button
+            // 
+            this.incAndApplyPreset4Button.Image = ((System.Drawing.Image)(resources.GetObject("incAndApplyPreset4Button.Image")));
+            this.incAndApplyPreset4Button.Location = new System.Drawing.Point(1255, 35);
+            this.incAndApplyPreset4Button.Name = "incAndApplyPreset4Button";
+            this.incAndApplyPreset4Button.Size = new System.Drawing.Size(26, 26);
+            this.incAndApplyPreset4Button.TabIndex = 26;
+            this.toolTip1.SetToolTip(this.incAndApplyPreset4Button, "Increment Time and Apply");
+            this.incAndApplyPreset4Button.UseVisualStyleBackColor = true;
+            this.incAndApplyPreset4Button.Click += new System.EventHandler(this.incAndApplyPreset4Button_Click);
+            // 
+            // decAndApplyPreset3Button
+            // 
+            this.decAndApplyPreset3Button.Image = ((System.Drawing.Image)(resources.GetObject("decAndApplyPreset3Button.Image")));
+            this.decAndApplyPreset3Button.Location = new System.Drawing.Point(1287, 8);
+            this.decAndApplyPreset3Button.Name = "decAndApplyPreset3Button";
+            this.decAndApplyPreset3Button.Size = new System.Drawing.Size(26, 26);
+            this.decAndApplyPreset3Button.TabIndex = 25;
+            this.toolTip1.SetToolTip(this.decAndApplyPreset3Button, "Decrement Time and Apply");
+            this.decAndApplyPreset3Button.UseVisualStyleBackColor = true;
+            this.decAndApplyPreset3Button.Click += new System.EventHandler(this.decAndApplyPreset3Button_Click);
+            // 
+            // storeAsPreset3Button
+            // 
+            this.storeAsPreset3Button.Image = ((System.Drawing.Image)(resources.GetObject("storeAsPreset3Button.Image")));
+            this.storeAsPreset3Button.Location = new System.Drawing.Point(1319, 8);
+            this.storeAsPreset3Button.Name = "storeAsPreset3Button";
+            this.storeAsPreset3Button.Size = new System.Drawing.Size(26, 26);
+            this.storeAsPreset3Button.TabIndex = 24;
+            this.toolTip1.SetToolTip(this.storeAsPreset3Button, "Store as Preset");
+            this.storeAsPreset3Button.UseVisualStyleBackColor = true;
+            this.storeAsPreset3Button.Click += new System.EventHandler(this.storeAsPreset3Button_Click);
+            // 
+            // applyPreset3Button
+            // 
+            this.applyPreset3Button.Image = ((System.Drawing.Image)(resources.GetObject("applyPreset3Button.Image")));
+            this.applyPreset3Button.Location = new System.Drawing.Point(1223, 8);
+            this.applyPreset3Button.Name = "applyPreset3Button";
+            this.applyPreset3Button.Size = new System.Drawing.Size(26, 26);
+            this.applyPreset3Button.TabIndex = 23;
+            this.toolTip1.SetToolTip(this.applyPreset3Button, "Apply to Image");
+            this.applyPreset3Button.UseVisualStyleBackColor = true;
+            this.applyPreset3Button.Click += new System.EventHandler(this.applyPreset3Button_Click);
+            // 
+            // incAndApplyPreset3Button
+            // 
+            this.incAndApplyPreset3Button.Image = ((System.Drawing.Image)(resources.GetObject("incAndApplyPreset3Button.Image")));
+            this.incAndApplyPreset3Button.Location = new System.Drawing.Point(1255, 8);
+            this.incAndApplyPreset3Button.Name = "incAndApplyPreset3Button";
+            this.incAndApplyPreset3Button.Size = new System.Drawing.Size(26, 26);
+            this.incAndApplyPreset3Button.TabIndex = 22;
+            this.toolTip1.SetToolTip(this.incAndApplyPreset3Button, "Increment Time and Apply");
+            this.incAndApplyPreset3Button.UseVisualStyleBackColor = true;
+            this.incAndApplyPreset3Button.Click += new System.EventHandler(this.incAndApplyPreset3Button_Click);
+            // 
+            // decAndApplyPreset2Button
+            // 
+            this.decAndApplyPreset2Button.Image = ((System.Drawing.Image)(resources.GetObject("decAndApplyPreset2Button.Image")));
+            this.decAndApplyPreset2Button.Location = new System.Drawing.Point(930, 35);
+            this.decAndApplyPreset2Button.Name = "decAndApplyPreset2Button";
+            this.decAndApplyPreset2Button.Size = new System.Drawing.Size(26, 26);
+            this.decAndApplyPreset2Button.TabIndex = 21;
+            this.toolTip1.SetToolTip(this.decAndApplyPreset2Button, "Decrement Time and Apply");
+            this.decAndApplyPreset2Button.UseVisualStyleBackColor = true;
+            this.decAndApplyPreset2Button.Click += new System.EventHandler(this.decAndApplyPreset2Button_Click);
+            // 
+            // storeAsPreset2Button
+            // 
+            this.storeAsPreset2Button.Image = ((System.Drawing.Image)(resources.GetObject("storeAsPreset2Button.Image")));
+            this.storeAsPreset2Button.Location = new System.Drawing.Point(962, 35);
+            this.storeAsPreset2Button.Name = "storeAsPreset2Button";
+            this.storeAsPreset2Button.Size = new System.Drawing.Size(26, 26);
+            this.storeAsPreset2Button.TabIndex = 20;
+            this.toolTip1.SetToolTip(this.storeAsPreset2Button, "Store as Preset");
+            this.storeAsPreset2Button.UseVisualStyleBackColor = true;
+            this.storeAsPreset2Button.Click += new System.EventHandler(this.storeAsPreset2Button_Click);
+            // 
+            // applyPreset2Button
+            // 
+            this.applyPreset2Button.Image = ((System.Drawing.Image)(resources.GetObject("applyPreset2Button.Image")));
+            this.applyPreset2Button.Location = new System.Drawing.Point(866, 35);
+            this.applyPreset2Button.Name = "applyPreset2Button";
+            this.applyPreset2Button.Size = new System.Drawing.Size(26, 26);
+            this.applyPreset2Button.TabIndex = 19;
+            this.toolTip1.SetToolTip(this.applyPreset2Button, "Apply to Image");
+            this.applyPreset2Button.UseVisualStyleBackColor = true;
+            this.applyPreset2Button.Click += new System.EventHandler(this.applyPreset2Button_Click);
+            // 
+            // incAndApplyPreset2Button
+            // 
+            this.incAndApplyPreset2Button.Image = ((System.Drawing.Image)(resources.GetObject("incAndApplyPreset2Button.Image")));
+            this.incAndApplyPreset2Button.Location = new System.Drawing.Point(898, 35);
+            this.incAndApplyPreset2Button.Name = "incAndApplyPreset2Button";
+            this.incAndApplyPreset2Button.Size = new System.Drawing.Size(26, 26);
+            this.incAndApplyPreset2Button.TabIndex = 18;
+            this.toolTip1.SetToolTip(this.incAndApplyPreset2Button, "Increment Time and Apply");
+            this.incAndApplyPreset2Button.UseVisualStyleBackColor = true;
+            this.incAndApplyPreset2Button.Click += new System.EventHandler(this.incAndApplyPreset2Button_Click);
+            // 
+            // decAndApplyPreset1Button
+            // 
+            this.decAndApplyPreset1Button.Image = ((System.Drawing.Image)(resources.GetObject("decAndApplyPreset1Button.Image")));
+            this.decAndApplyPreset1Button.Location = new System.Drawing.Point(930, 8);
+            this.decAndApplyPreset1Button.Name = "decAndApplyPreset1Button";
+            this.decAndApplyPreset1Button.Size = new System.Drawing.Size(26, 26);
+            this.decAndApplyPreset1Button.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.decAndApplyPreset1Button, "Decrement Time and Apply");
+            this.decAndApplyPreset1Button.UseVisualStyleBackColor = true;
+            this.decAndApplyPreset1Button.Click += new System.EventHandler(this.decAndApplyPreset1Button_Click);
+            // 
+            // storeAsPreset1Button
+            // 
+            this.storeAsPreset1Button.Image = ((System.Drawing.Image)(resources.GetObject("storeAsPreset1Button.Image")));
+            this.storeAsPreset1Button.Location = new System.Drawing.Point(962, 8);
+            this.storeAsPreset1Button.Name = "storeAsPreset1Button";
+            this.storeAsPreset1Button.Size = new System.Drawing.Size(26, 26);
+            this.storeAsPreset1Button.TabIndex = 16;
+            this.toolTip1.SetToolTip(this.storeAsPreset1Button, "Store as Preset");
+            this.storeAsPreset1Button.UseVisualStyleBackColor = true;
+            this.storeAsPreset1Button.Click += new System.EventHandler(this.storeAsPreset1Button_Click);
+            // 
+            // applyPreset1Button
+            // 
+            this.applyPreset1Button.Image = ((System.Drawing.Image)(resources.GetObject("applyPreset1Button.Image")));
+            this.applyPreset1Button.Location = new System.Drawing.Point(866, 8);
+            this.applyPreset1Button.Name = "applyPreset1Button";
+            this.applyPreset1Button.Size = new System.Drawing.Size(26, 26);
+            this.applyPreset1Button.TabIndex = 15;
+            this.toolTip1.SetToolTip(this.applyPreset1Button, "Apply to Image");
+            this.applyPreset1Button.UseVisualStyleBackColor = true;
+            this.applyPreset1Button.Click += new System.EventHandler(this.applyPreset1Button_Click);
+            // 
+            // incAndApplyPreset1Button
+            // 
+            this.incAndApplyPreset1Button.Image = ((System.Drawing.Image)(resources.GetObject("incAndApplyPreset1Button.Image")));
+            this.incAndApplyPreset1Button.Location = new System.Drawing.Point(898, 8);
+            this.incAndApplyPreset1Button.Name = "incAndApplyPreset1Button";
+            this.incAndApplyPreset1Button.Size = new System.Drawing.Size(26, 26);
+            this.incAndApplyPreset1Button.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.incAndApplyPreset1Button, "Increment Time and Apply");
+            this.incAndApplyPreset1Button.UseVisualStyleBackColor = true;
+            this.incAndApplyPreset1Button.Click += new System.EventHandler(this.incAndApplyPreset1Button_Click);
+            // 
+            // applyDateButton
+            // 
+            this.applyDateButton.Location = new System.Drawing.Point(656, 11);
+            this.applyDateButton.Name = "applyDateButton";
+            this.applyDateButton.Size = new System.Drawing.Size(54, 43);
+            this.applyDateButton.TabIndex = 13;
+            this.applyDateButton.Text = "&Apply";
+            this.applyDateButton.UseVisualStyleBackColor = true;
+            this.applyDateButton.Click += new System.EventHandler(this.applyDateButton_Click);
+            // 
             // preset4DateTimePicker
             // 
             this.preset4DateTimePicker.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -236,7 +424,7 @@
             // 
             // commitChangesButton
             // 
-            this.commitChangesButton.Location = new System.Drawing.Point(1629, 8);
+            this.commitChangesButton.Location = new System.Drawing.Point(1727, 6);
             this.commitChangesButton.Name = "commitChangesButton";
             this.commitChangesButton.Size = new System.Drawing.Size(143, 53);
             this.commitChangesButton.TabIndex = 0;
@@ -286,6 +474,16 @@
             this.prevButton.UseVisualStyleBackColor = true;
             this.prevButton.Click += new System.EventHandler(this.prevButton_Click);
             // 
+            // pictureViewDateEditor
+            // 
+            this.pictureViewDateEditor.AllowTimeEditing = true;
+            this.pictureViewDateEditor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pictureViewDateEditor.Location = new System.Drawing.Point(120, 16);
+            this.pictureViewDateEditor.Name = "pictureViewDateEditor";
+            this.pictureViewDateEditor.Size = new System.Drawing.Size(532, 38);
+            this.pictureViewDateEditor.TabIndex = 1;
+            this.pictureViewDateEditor.Load += new System.EventHandler(this.pictureViewDateEditor_Load);
+            // 
             // gridViewTabPage
             // 
             this.gridViewTabPage.Controls.Add(this.dataGridView);
@@ -330,7 +528,7 @@
             this.DateTakenColumn.HeaderText = "Date Taken";
             this.DateTakenColumn.Name = "DateTakenColumn";
             this.DateTakenColumn.ReadOnly = true;
-            this.DateTakenColumn.Width = 89;
+            this.DateTakenColumn.Width = 82;
             // 
             // NewDateTakenColumn
             // 
@@ -374,6 +572,15 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dateEditor1
+            // 
+            this.dateEditor1.AllowTimeEditing = true;
+            this.dateEditor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEditor1.Location = new System.Drawing.Point(373, 57);
+            this.dateEditor1.Name = "dateEditor1";
+            this.dateEditor1.Size = new System.Drawing.Size(571, 38);
+            this.dateEditor1.TabIndex = 0;
             // 
             // rootTableLayoutPanel
             // 
@@ -473,210 +680,15 @@
             // 
             this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
             // 
-            // applyDateButton
+            // applyDeltaToSiblings
             // 
-            this.applyDateButton.Location = new System.Drawing.Point(656, 11);
-            this.applyDateButton.Name = "applyDateButton";
-            this.applyDateButton.Size = new System.Drawing.Size(54, 43);
-            this.applyDateButton.TabIndex = 13;
-            this.applyDateButton.Text = "&Apply";
-            this.applyDateButton.UseVisualStyleBackColor = true;
-            this.applyDateButton.Click += new System.EventHandler(this.applyDateButton_Click);
-            // 
-            // incAndApplyPreset1Button
-            // 
-            this.incAndApplyPreset1Button.Image = ((System.Drawing.Image)(resources.GetObject("incAndApplyPreset1Button.Image")));
-            this.incAndApplyPreset1Button.Location = new System.Drawing.Point(898, 8);
-            this.incAndApplyPreset1Button.Name = "incAndApplyPreset1Button";
-            this.incAndApplyPreset1Button.Size = new System.Drawing.Size(26, 26);
-            this.incAndApplyPreset1Button.TabIndex = 14;
-            this.toolTip1.SetToolTip(this.incAndApplyPreset1Button, "Increment Time and Apply");
-            this.incAndApplyPreset1Button.UseVisualStyleBackColor = true;
-            this.incAndApplyPreset1Button.Click += new System.EventHandler(this.incAndApplyPreset1Button_Click);
-            // 
-            // applyPreset1Button
-            // 
-            this.applyPreset1Button.Image = ((System.Drawing.Image)(resources.GetObject("applyPreset1Button.Image")));
-            this.applyPreset1Button.Location = new System.Drawing.Point(866, 8);
-            this.applyPreset1Button.Name = "applyPreset1Button";
-            this.applyPreset1Button.Size = new System.Drawing.Size(26, 26);
-            this.applyPreset1Button.TabIndex = 15;
-            this.toolTip1.SetToolTip(this.applyPreset1Button, "Apply to Image");
-            this.applyPreset1Button.UseVisualStyleBackColor = true;
-            this.applyPreset1Button.Click += new System.EventHandler(this.applyPreset1Button_Click);
-            // 
-            // storeAsPreset1Button
-            // 
-            this.storeAsPreset1Button.Image = ((System.Drawing.Image)(resources.GetObject("storeAsPreset1Button.Image")));
-            this.storeAsPreset1Button.Location = new System.Drawing.Point(962, 8);
-            this.storeAsPreset1Button.Name = "storeAsPreset1Button";
-            this.storeAsPreset1Button.Size = new System.Drawing.Size(26, 26);
-            this.storeAsPreset1Button.TabIndex = 16;
-            this.toolTip1.SetToolTip(this.storeAsPreset1Button, "Store as Preset");
-            this.storeAsPreset1Button.UseVisualStyleBackColor = true;
-            this.storeAsPreset1Button.Click += new System.EventHandler(this.storeAsPreset1Button_Click);
-            // 
-            // decAndApplyPreset1Button
-            // 
-            this.decAndApplyPreset1Button.Image = ((System.Drawing.Image)(resources.GetObject("decAndApplyPreset1Button.Image")));
-            this.decAndApplyPreset1Button.Location = new System.Drawing.Point(930, 8);
-            this.decAndApplyPreset1Button.Name = "decAndApplyPreset1Button";
-            this.decAndApplyPreset1Button.Size = new System.Drawing.Size(26, 26);
-            this.decAndApplyPreset1Button.TabIndex = 17;
-            this.toolTip1.SetToolTip(this.decAndApplyPreset1Button, "Decrement Time and Apply");
-            this.decAndApplyPreset1Button.UseVisualStyleBackColor = true;
-            this.decAndApplyPreset1Button.Click += new System.EventHandler(this.decAndApplyPreset1Button_Click);
-            // 
-            // decAndApplyPreset2Button
-            // 
-            this.decAndApplyPreset2Button.Image = ((System.Drawing.Image)(resources.GetObject("decAndApplyPreset2Button.Image")));
-            this.decAndApplyPreset2Button.Location = new System.Drawing.Point(930, 35);
-            this.decAndApplyPreset2Button.Name = "decAndApplyPreset2Button";
-            this.decAndApplyPreset2Button.Size = new System.Drawing.Size(26, 26);
-            this.decAndApplyPreset2Button.TabIndex = 21;
-            this.toolTip1.SetToolTip(this.decAndApplyPreset2Button, "Decrement Time and Apply");
-            this.decAndApplyPreset2Button.UseVisualStyleBackColor = true;
-            this.decAndApplyPreset2Button.Click += new System.EventHandler(this.decAndApplyPreset2Button_Click);
-            // 
-            // storeAsPreset2Button
-            // 
-            this.storeAsPreset2Button.Image = ((System.Drawing.Image)(resources.GetObject("storeAsPreset2Button.Image")));
-            this.storeAsPreset2Button.Location = new System.Drawing.Point(962, 35);
-            this.storeAsPreset2Button.Name = "storeAsPreset2Button";
-            this.storeAsPreset2Button.Size = new System.Drawing.Size(26, 26);
-            this.storeAsPreset2Button.TabIndex = 20;
-            this.toolTip1.SetToolTip(this.storeAsPreset2Button, "Store as Preset");
-            this.storeAsPreset2Button.UseVisualStyleBackColor = true;
-            this.storeAsPreset2Button.Click += new System.EventHandler(this.storeAsPreset2Button_Click);
-            // 
-            // applyPreset2Button
-            // 
-            this.applyPreset2Button.Image = ((System.Drawing.Image)(resources.GetObject("applyPreset2Button.Image")));
-            this.applyPreset2Button.Location = new System.Drawing.Point(866, 35);
-            this.applyPreset2Button.Name = "applyPreset2Button";
-            this.applyPreset2Button.Size = new System.Drawing.Size(26, 26);
-            this.applyPreset2Button.TabIndex = 19;
-            this.toolTip1.SetToolTip(this.applyPreset2Button, "Apply to Image");
-            this.applyPreset2Button.UseVisualStyleBackColor = true;
-            this.applyPreset2Button.Click += new System.EventHandler(this.applyPreset2Button_Click);
-            // 
-            // incAndApplyPreset2Button
-            // 
-            this.incAndApplyPreset2Button.Image = ((System.Drawing.Image)(resources.GetObject("incAndApplyPreset2Button.Image")));
-            this.incAndApplyPreset2Button.Location = new System.Drawing.Point(898, 35);
-            this.incAndApplyPreset2Button.Name = "incAndApplyPreset2Button";
-            this.incAndApplyPreset2Button.Size = new System.Drawing.Size(26, 26);
-            this.incAndApplyPreset2Button.TabIndex = 18;
-            this.toolTip1.SetToolTip(this.incAndApplyPreset2Button, "Increment Time and Apply");
-            this.incAndApplyPreset2Button.UseVisualStyleBackColor = true;
-            this.incAndApplyPreset2Button.Click += new System.EventHandler(this.incAndApplyPreset2Button_Click);
-            // 
-            // decAndApplyPreset4Button
-            // 
-            this.decAndApplyPreset4Button.Image = ((System.Drawing.Image)(resources.GetObject("decAndApplyPreset4Button.Image")));
-            this.decAndApplyPreset4Button.Location = new System.Drawing.Point(1287, 35);
-            this.decAndApplyPreset4Button.Name = "decAndApplyPreset4Button";
-            this.decAndApplyPreset4Button.Size = new System.Drawing.Size(26, 26);
-            this.decAndApplyPreset4Button.TabIndex = 29;
-            this.toolTip1.SetToolTip(this.decAndApplyPreset4Button, "Decrement Time and Apply");
-            this.decAndApplyPreset4Button.UseVisualStyleBackColor = true;
-            this.decAndApplyPreset4Button.Click += new System.EventHandler(this.decAndApplyPreset4Button_Click);
-            // 
-            // storeAsPreset4Button
-            // 
-            this.storeAsPreset4Button.Image = ((System.Drawing.Image)(resources.GetObject("storeAsPreset4Button.Image")));
-            this.storeAsPreset4Button.Location = new System.Drawing.Point(1319, 35);
-            this.storeAsPreset4Button.Name = "storeAsPreset4Button";
-            this.storeAsPreset4Button.Size = new System.Drawing.Size(26, 26);
-            this.storeAsPreset4Button.TabIndex = 28;
-            this.toolTip1.SetToolTip(this.storeAsPreset4Button, "Store as Preset");
-            this.storeAsPreset4Button.UseVisualStyleBackColor = true;
-            this.storeAsPreset4Button.Click += new System.EventHandler(this.storeAsPreset4Button_Click);
-            // 
-            // applyPreset4Button
-            // 
-            this.applyPreset4Button.Image = ((System.Drawing.Image)(resources.GetObject("applyPreset4Button.Image")));
-            this.applyPreset4Button.Location = new System.Drawing.Point(1223, 35);
-            this.applyPreset4Button.Name = "applyPreset4Button";
-            this.applyPreset4Button.Size = new System.Drawing.Size(26, 26);
-            this.applyPreset4Button.TabIndex = 27;
-            this.toolTip1.SetToolTip(this.applyPreset4Button, "Apply to Image");
-            this.applyPreset4Button.UseVisualStyleBackColor = true;
-            this.applyPreset4Button.Click += new System.EventHandler(this.applyPreset4Button_Click);
-            // 
-            // incAndApplyPreset4Button
-            // 
-            this.incAndApplyPreset4Button.Image = ((System.Drawing.Image)(resources.GetObject("incAndApplyPreset4Button.Image")));
-            this.incAndApplyPreset4Button.Location = new System.Drawing.Point(1255, 35);
-            this.incAndApplyPreset4Button.Name = "incAndApplyPreset4Button";
-            this.incAndApplyPreset4Button.Size = new System.Drawing.Size(26, 26);
-            this.incAndApplyPreset4Button.TabIndex = 26;
-            this.toolTip1.SetToolTip(this.incAndApplyPreset4Button, "Increment Time and Apply");
-            this.incAndApplyPreset4Button.UseVisualStyleBackColor = true;
-            this.incAndApplyPreset4Button.Click += new System.EventHandler(this.incAndApplyPreset4Button_Click);
-            // 
-            // decAndApplyPreset3Button
-            // 
-            this.decAndApplyPreset3Button.Image = ((System.Drawing.Image)(resources.GetObject("decAndApplyPreset3Button.Image")));
-            this.decAndApplyPreset3Button.Location = new System.Drawing.Point(1287, 8);
-            this.decAndApplyPreset3Button.Name = "decAndApplyPreset3Button";
-            this.decAndApplyPreset3Button.Size = new System.Drawing.Size(26, 26);
-            this.decAndApplyPreset3Button.TabIndex = 25;
-            this.toolTip1.SetToolTip(this.decAndApplyPreset3Button, "Decrement Time and Apply");
-            this.decAndApplyPreset3Button.UseVisualStyleBackColor = true;
-            this.decAndApplyPreset3Button.Click += new System.EventHandler(this.decAndApplyPreset3Button_Click);
-            // 
-            // storeAsPreset3Button
-            // 
-            this.storeAsPreset3Button.Image = ((System.Drawing.Image)(resources.GetObject("storeAsPreset3Button.Image")));
-            this.storeAsPreset3Button.Location = new System.Drawing.Point(1319, 8);
-            this.storeAsPreset3Button.Name = "storeAsPreset3Button";
-            this.storeAsPreset3Button.Size = new System.Drawing.Size(26, 26);
-            this.storeAsPreset3Button.TabIndex = 24;
-            this.toolTip1.SetToolTip(this.storeAsPreset3Button, "Store as Preset");
-            this.storeAsPreset3Button.UseVisualStyleBackColor = true;
-            this.storeAsPreset3Button.Click += new System.EventHandler(this.storeAsPreset3Button_Click);
-            // 
-            // applyPreset3Button
-            // 
-            this.applyPreset3Button.Image = ((System.Drawing.Image)(resources.GetObject("applyPreset3Button.Image")));
-            this.applyPreset3Button.Location = new System.Drawing.Point(1223, 8);
-            this.applyPreset3Button.Name = "applyPreset3Button";
-            this.applyPreset3Button.Size = new System.Drawing.Size(26, 26);
-            this.applyPreset3Button.TabIndex = 23;
-            this.toolTip1.SetToolTip(this.applyPreset3Button, "Apply to Image");
-            this.applyPreset3Button.UseVisualStyleBackColor = true;
-            this.applyPreset3Button.Click += new System.EventHandler(this.applyPreset3Button_Click);
-            // 
-            // incAndApplyPreset3Button
-            // 
-            this.incAndApplyPreset3Button.Image = ((System.Drawing.Image)(resources.GetObject("incAndApplyPreset3Button.Image")));
-            this.incAndApplyPreset3Button.Location = new System.Drawing.Point(1255, 8);
-            this.incAndApplyPreset3Button.Name = "incAndApplyPreset3Button";
-            this.incAndApplyPreset3Button.Size = new System.Drawing.Size(26, 26);
-            this.incAndApplyPreset3Button.TabIndex = 22;
-            this.toolTip1.SetToolTip(this.incAndApplyPreset3Button, "Increment Time and Apply");
-            this.incAndApplyPreset3Button.UseVisualStyleBackColor = true;
-            this.incAndApplyPreset3Button.Click += new System.EventHandler(this.incAndApplyPreset3Button_Click);
-            // 
-            // pictureViewDateEditor
-            // 
-            this.pictureViewDateEditor.AllowTimeEditing = true;
-            this.pictureViewDateEditor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pictureViewDateEditor.Location = new System.Drawing.Point(120, 16);
-            this.pictureViewDateEditor.Name = "pictureViewDateEditor";
-            this.pictureViewDateEditor.Size = new System.Drawing.Size(532, 38);
-            this.pictureViewDateEditor.TabIndex = 1;
-            this.pictureViewDateEditor.Load += new System.EventHandler(this.pictureViewDateEditor_Load);
-            // 
-            // dateEditor1
-            // 
-            this.dateEditor1.AllowTimeEditing = true;
-            this.dateEditor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEditor1.Location = new System.Drawing.Point(373, 57);
-            this.dateEditor1.Name = "dateEditor1";
-            this.dateEditor1.Size = new System.Drawing.Size(571, 38);
-            this.dateEditor1.TabIndex = 0;
+            this.applyDeltaToSiblings.Location = new System.Drawing.Point(1583, 6);
+            this.applyDeltaToSiblings.Name = "applyDeltaToSiblings";
+            this.applyDeltaToSiblings.Size = new System.Drawing.Size(76, 53);
+            this.applyDeltaToSiblings.TabIndex = 30;
+            this.applyDeltaToSiblings.Text = "Apply Delta To Siblings";
+            this.applyDeltaToSiblings.UseVisualStyleBackColor = true;
+            this.applyDeltaToSiblings.Click += new System.EventHandler(this.applyDeltaToSiblings_Click);
             // 
             // MainForm
             // 
@@ -770,6 +782,7 @@
         private System.Windows.Forms.Button storeAsPreset3Button;
         private System.Windows.Forms.Button applyPreset3Button;
         private System.Windows.Forms.Button incAndApplyPreset3Button;
+        private System.Windows.Forms.Button applyDeltaToSiblings;
     }
 }
 
