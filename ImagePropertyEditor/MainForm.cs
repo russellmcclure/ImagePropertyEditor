@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExifLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -191,6 +192,9 @@ namespace ImagePropertyEditor
                     // lets remove any that have already had their Date Taken set or whose ExIf I can't edit programmatically
                     imageFilesTemp.RemoveAll(f => f.DateTaken.HasValue || !f.CanSetDateTaken);
                 }
+
+                // sort them by their sortable name
+                imageFilesTemp.Sort((a, b) => string.Compare(a.SortableName, b.SortableName));
 
                 // create a bindinglist of our items for display in the GUI
                 this.imageFiles = new BindingList<ImageFileInfo>(imageFilesTemp);
@@ -452,16 +456,62 @@ namespace ImagePropertyEditor
                 int siblingMonth = currentImageFileInfo.DateTaken.Value.Month;
                 int siblingYear = currentImageFileInfo.DateTaken.Value.Year;
 
-                // get all current images with the same month and year but don't already have a NewDateTaken set
-                foreach (var imageFile in this.imageFiles)
+                ImageFileInfo lastCandidateExamined = currentImageFileInfo;
+                // lets walk from the current image towards the beginning of the list 
+                for (int i = currentImageFileIndex - 1; i >= 0; i--)
                 {
                     // to be a sibling, it must have an original DateTaken that has a value and whose year and month match our target.
                     // it also cannot have already had it's NewDateTaken set yet.
-                    if (imageFile.DateTaken.HasValue && imageFile.DateTaken.Value.Year == siblingYear && imageFile.DateTaken.Value.Month == siblingMonth && !imageFile.NewDateTaken.HasValue)
+                    // AND it can't a newer DateTaken then the previous candidate we looked at
+                    ImageFileInfo candidateToChange = this.imageFiles[i];
+                    if (candidateToChange.DateTaken.HasValue
+                        && candidateToChange.DateTaken.Value.Year == siblingYear
+                        && candidateToChange.DateTaken.Value.Month == siblingMonth
+                        && !candidateToChange.NewDateTaken.HasValue
+                        && candidateToChange.DateTaken.Value <= currentImageFileInfo.DateTaken.Value)
                     {
-                        imageFile.NewDateTaken = imageFile.DateTaken.Value + delta;
+                        candidateToChange.NewDateTaken = candidateToChange.DateTaken.Value + delta;
                     }
+                    else
+                    {
+                        break;
+                    }
+
+                    lastCandidateExamined = candidateToChange;
                 }
+
+                lastCandidateExamined = currentImageFileInfo;
+                for (int i = currentImageFileIndex + 1; i < this.imageFiles.Count; i++)
+                {
+                    // to be a sibling, it must have an original DateTaken that has a value and whose year and month match our target.
+                    // it also cannot have already had it's NewDateTaken set yet.
+                    // AND it can't a newer DateTaken then the previous candidate we looked at
+                    ImageFileInfo candidateToChange = this.imageFiles[i];
+                    if (candidateToChange.DateTaken.HasValue
+                        && candidateToChange.DateTaken.Value.Year == siblingYear
+                        && candidateToChange.DateTaken.Value.Month == siblingMonth
+                        && !candidateToChange.NewDateTaken.HasValue
+                        && candidateToChange.DateTaken.Value >= currentImageFileInfo.DateTaken.Value)
+                    {
+                        candidateToChange.NewDateTaken = candidateToChange.DateTaken.Value + delta;
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                    lastCandidateExamined = candidateToChange;
+                }
+                //// get all current images with the same month and year but don't already have a NewDateTaken set
+                //foreach (var imageFile in this.imageFiles)
+                //    {
+                //        // to be a sibling, it must have an original DateTaken that has a value and whose year and month match our target.
+                //        // it also cannot have already had it's NewDateTaken set yet.
+                //    if (imageFile.DateTaken.HasValue && imageFile.DateTaken.Value.Year == siblingYear && imageFile.DateTaken.Value.Month == siblingMonth && !imageFile.NewDateTaken.HasValue)
+                //    {
+                //        imageFile.NewDateTaken = imageFile.DateTaken.Value + delta;
+                //    }
+                //}
             }
             else
             {

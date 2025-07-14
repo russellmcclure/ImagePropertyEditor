@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ImagePropertyEditor
@@ -22,6 +23,17 @@ namespace ImagePropertyEditor
         {
             this.fileInfo = fileInfo;
 
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileInfo.FullName);
+            if (Regex.IsMatch(fileNameWithoutExtension, @"^100[B_]\d{4}$"))
+            {
+                // I want to find the file names that the camera produces and order them by the last four digits
+                SortableName = fileNameWithoutExtension.Substring(fileNameWithoutExtension.Length - 4);
+            }
+            else
+            {
+                SortableName = "ZZ" + fileNameWithoutExtension;
+            }
+
             try
             {
                 this.exifImageFile = ExifLibrary.ImageFile.FromFile(this.fileInfo.FullName);
@@ -36,6 +48,8 @@ namespace ImagePropertyEditor
         } 
 
         public string FullName {  get {  return fileInfo.FullName; } }
+
+        public string SortableName { get; private set; }
 
         public bool CanSetDateTaken { get { return this.exifImageFile != null; } }
 
