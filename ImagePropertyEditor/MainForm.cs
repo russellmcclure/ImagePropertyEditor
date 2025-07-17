@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -471,6 +472,9 @@ namespace ImagePropertyEditor
                         && candidateToChange.DateTaken.Value <= currentImageFileInfo.DateTaken.Value)
                     {
                         candidateToChange.NewDateTaken = candidateToChange.DateTaken.Value + delta;
+
+                        // lets always set the modified date
+                        candidateToChange.NewLastModifiedTime = candidateToChange.NewDateTaken;
                     }
                     else
                     {
@@ -494,6 +498,9 @@ namespace ImagePropertyEditor
                         && candidateToChange.DateTaken.Value >= currentImageFileInfo.DateTaken.Value)
                     {
                         candidateToChange.NewDateTaken = candidateToChange.DateTaken.Value + delta;
+
+                        // lets always set the modified date
+                        candidateToChange.NewLastModifiedTime = candidateToChange.NewDateTaken;
                     }
                     else
                     {
@@ -517,6 +524,64 @@ namespace ImagePropertyEditor
             {
                 MessageBox.Show("You need to have an existing Date Taken and also have chosen a New Date Taken in order to use this as a delta for other images.");
             }
+        }
+
+        private void countOriginalKodakJPGs_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            string rootFolder = @"D:\Pictures\FamilyPictures";
+
+            List<string> imageFileNames = new List<string>();
+            imageFileNames.AddRange(Directory.GetFiles(rootFolder, "*.jpg", SearchOption.AllDirectories));
+
+            // we are only looking for original files (not the copies Brooke made) taken by the Kodak camera
+            imageFileNames.RemoveAll(f => !Regex.IsMatch(Path.GetFileNameWithoutExtension(f), @"^100[B_]\d{4}$"));
+
+            //// now load up the meta data for each of the image files we've found
+            //List<ImageFileInfo> imageFilesTemp = imageFileNames.Select(f => new ImageFileInfo(f)).ToList();
+
+            //// we are only looking for the "problem" ones where the datetaken is in Jan 2005
+            //imageFilesTemp.RemoveAll(f => f.DateTaken.HasValue
+            //            && f.DateTaken.Value.Year == 2005
+            //            && f.DateTaken.Value.Month == 1);
+
+            foreach (var file in imageFileNames)
+            {
+                try
+                {
+                    var imageFile = ExifLibrary.ImageFile.FromFile(file);
+                    try
+                    {
+                        var dateTaken = imageFile.Properties.Get(ExifLibrary.ExifTag.DateTimeOriginal);
+                        var convertedDateTaken = dateTaken == null ? null : (DateTime?)dateTaken.Value;
+
+                        if (convertedDateTaken.HasValue 
+                            && convertedDateTaken.Value.Year == 2005
+                            && convertedDateTaken.Value.Month == 1)
+                        {
+                            count++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
+                catch
+                {
+                    // Ignore files that fail to load EXIF data
+                }
+            }
+
+            //count = imageFilesTemp.Count;
+
+
+            MessageBox.Show("Count is: " + count);
+        }
+
+        private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.currentImageFileIndex = e.RowIndex;
+            ShowNewlySelectedImage();
         }
     }
 }

@@ -39,6 +39,7 @@
             this.pictureViewTabPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.imageViewControlPanel = new System.Windows.Forms.Panel();
+            this.applyDeltaToSiblings = new System.Windows.Forms.Button();
             this.decAndApplyPreset4Button = new System.Windows.Forms.Button();
             this.storeAsPreset4Button = new System.Windows.Forms.Button();
             this.applyPreset4Button = new System.Windows.Forms.Button();
@@ -73,6 +74,7 @@
             this.LastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NewLastModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.countOriginalKodakJPGs = new System.Windows.Forms.Button();
             this.dateEditor1 = new ImagePropertyEditor.DateEditor();
             this.rootTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainControlsPanel = new System.Windows.Forms.Panel();
@@ -85,7 +87,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.applyDeltaToSiblings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainPictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -213,6 +214,16 @@
             this.imageViewControlPanel.Name = "imageViewControlPanel";
             this.imageViewControlPanel.Size = new System.Drawing.Size(1873, 69);
             this.imageViewControlPanel.TabIndex = 3;
+            // 
+            // applyDeltaToSiblings
+            // 
+            this.applyDeltaToSiblings.Location = new System.Drawing.Point(1583, 6);
+            this.applyDeltaToSiblings.Name = "applyDeltaToSiblings";
+            this.applyDeltaToSiblings.Size = new System.Drawing.Size(76, 53);
+            this.applyDeltaToSiblings.TabIndex = 30;
+            this.applyDeltaToSiblings.Text = "Apply Delta To Siblings";
+            this.applyDeltaToSiblings.UseVisualStyleBackColor = true;
+            this.applyDeltaToSiblings.Click += new System.EventHandler(this.applyDeltaToSiblings_Click);
             // 
             // decAndApplyPreset4Button
             // 
@@ -513,6 +524,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(1879, 846);
             this.dataGridView.TabIndex = 3;
+            this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
             // 
             // FileColumn
             // 
@@ -564,6 +576,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.countOriginalKodakJPGs);
             this.tabPage1.Controls.Add(this.dateEditor1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -572,6 +585,16 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // countOriginalKodakJPGs
+            // 
+            this.countOriginalKodakJPGs.Location = new System.Drawing.Point(1165, 146);
+            this.countOriginalKodakJPGs.Name = "countOriginalKodakJPGs";
+            this.countOriginalKodakJPGs.Size = new System.Drawing.Size(104, 52);
+            this.countOriginalKodakJPGs.TabIndex = 7;
+            this.countOriginalKodakJPGs.Text = "Count Original Kodak JPGs";
+            this.countOriginalKodakJPGs.UseVisualStyleBackColor = true;
+            this.countOriginalKodakJPGs.Click += new System.EventHandler(this.countOriginalKodakJPGs_Click);
             // 
             // dateEditor1
             // 
@@ -680,16 +703,6 @@
             // 
             this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
             // 
-            // applyDeltaToSiblings
-            // 
-            this.applyDeltaToSiblings.Location = new System.Drawing.Point(1583, 6);
-            this.applyDeltaToSiblings.Name = "applyDeltaToSiblings";
-            this.applyDeltaToSiblings.Size = new System.Drawing.Size(76, 53);
-            this.applyDeltaToSiblings.TabIndex = 30;
-            this.applyDeltaToSiblings.Text = "Apply Delta To Siblings";
-            this.applyDeltaToSiblings.UseVisualStyleBackColor = true;
-            this.applyDeltaToSiblings.Click += new System.EventHandler(this.applyDeltaToSiblings_Click);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -783,6 +796,7 @@
         private System.Windows.Forms.Button applyPreset3Button;
         private System.Windows.Forms.Button incAndApplyPreset3Button;
         private System.Windows.Forms.Button applyDeltaToSiblings;
+        private System.Windows.Forms.Button countOriginalKodakJPGs;
     }
 }
 
