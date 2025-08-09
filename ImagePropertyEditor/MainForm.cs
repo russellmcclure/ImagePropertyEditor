@@ -469,7 +469,7 @@ namespace ImagePropertyEditor
                         && candidateToChange.DateTaken.Value.Year == siblingYear
                         && candidateToChange.DateTaken.Value.Month == siblingMonth
                         && !candidateToChange.NewDateTaken.HasValue
-                        && candidateToChange.DateTaken.Value <= currentImageFileInfo.DateTaken.Value)
+                        && candidateToChange.DateTaken.Value <= lastCandidateExamined.DateTaken.Value)
                     {
                         candidateToChange.NewDateTaken = candidateToChange.DateTaken.Value + delta;
 
@@ -495,7 +495,7 @@ namespace ImagePropertyEditor
                         && candidateToChange.DateTaken.Value.Year == siblingYear
                         && candidateToChange.DateTaken.Value.Month == siblingMonth
                         && !candidateToChange.NewDateTaken.HasValue
-                        && candidateToChange.DateTaken.Value >= currentImageFileInfo.DateTaken.Value)
+                        && candidateToChange.DateTaken.Value >= lastCandidateExamined.DateTaken.Value)
                     {
                         candidateToChange.NewDateTaken = candidateToChange.DateTaken.Value + delta;
 
